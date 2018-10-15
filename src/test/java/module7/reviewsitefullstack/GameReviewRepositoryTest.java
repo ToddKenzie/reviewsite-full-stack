@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -31,6 +32,11 @@ public class GameReviewRepositoryTest {
 	@Resource
 	private TagRepository tagRepo;
 
+	
+	@Before
+	public void setUp() {
+		
+	}
 	
 	@Test
 	public void shouldGenerateGameReviewId() {
