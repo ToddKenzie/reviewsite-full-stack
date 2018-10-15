@@ -1,8 +1,8 @@
 package module7.reviewsitefullstack;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
 import java.util.Optional;
@@ -33,29 +33,42 @@ public class GameReviewRepositoryTest {
 	private TagRepository tagRepo;
 
 	
+	GameReview review1;
+	GameReview review2;
+	GameReview review3;
+	
+	GameCategory board;
+	GameCategory card;
+	
+	Tag coop;
+	Tag competitive;
+	
 	@Before
 	public void setUp() {
+		board = gameCategoryRepo.save(new GameCategory("board"));
+		card = gameCategoryRepo.save(new GameCategory("card"));
 		
+		coop = tagRepo.save(new Tag("co-op"));
+		competitive = tagRepo.save(new Tag("competitive"));
+
+		review1 = gameReviewRepo.save(new GameReview("Root", board, coop, competitive));
+		review2 = gameReviewRepo.save(new GameReview("Concordia", board, competitive));
+		review3 = gameReviewRepo.save(new GameReview("The Mind", card, coop));
+		
+		entity.flush();
+		entity.clear();
 	}
 	
 	@Test
 	public void shouldGenerateGameReviewId() {
-		GameReview review1 = gameReviewRepo.save(new GameReview("Root", null));
 		Long testID = review1.getId();
 		
-		entity.flush();
-		entity.clear();
-
-		assertThat(testID, notNullValue());
+		assertThat(testID, greaterThan(0L));
 	}
 	
 	@Test
 	public void shouldSaveAndLoadAReview() {
-		GameReview review1 = gameReviewRepo.save(new GameReview("Root", null));
 		long testID = review1.getId();
-		
-		entity.flush();
-		entity.clear();
 		
 		Optional<GameReview> underTest = gameReviewRepo.findById(testID);
 		GameReview testReview = underTest.get();
@@ -64,37 +77,16 @@ public class GameReviewRepositoryTest {
 	
 	@Test
 	public void shouldEstablishReviewToCategoryRelationship() {
-		GameCategory board = gameCategoryRepo.save(new GameCategory("board"));
-		GameCategory card = gameCategoryRepo.save(new GameCategory("card"));
 		long boardID = board.getId();
-		
-		GameReview review1 = gameReviewRepo.save(new GameReview("Root", board));
-		GameReview review2 = gameReviewRepo.save(new GameReview("Concordia", board));
-		@SuppressWarnings("unused")
-		GameReview review3 = gameReviewRepo.save(new GameReview("The Mind", card));
-		
-		entity.flush();
-		entity.clear();
-		
+			
 		Optional<GameCategory> testBoard = gameCategoryRepo.findById(boardID);
 		GameCategory underTest = testBoard.get();
 		assertThat(underTest.getGameReviews(), containsInAnyOrder(review1, review2));
-		
 	}
 	
 	@Test
 	public void shouldEstablishReviewToTagRelationship() {
-		Tag coop = tagRepo.save(new Tag("co-op"));
-		Tag competitive = tagRepo.save(new Tag("competitive"));
 		long tagID = coop.getId();
-		
-		GameReview review1 = gameReviewRepo.save(new GameReview("Root", null, coop, competitive));
-		@SuppressWarnings("unused")
-		GameReview review2 = gameReviewRepo.save(new GameReview("Concordia", null, competitive));
-		GameReview review3 = gameReviewRepo.save(new GameReview("The Mind", null, coop));
-		
-		entity.flush();
-		entity.clear();
 		
 		Optional<Tag> testTag = tagRepo.findById(tagID);
 		Tag underTest = testTag.get();
