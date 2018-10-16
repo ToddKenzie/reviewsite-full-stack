@@ -8,6 +8,6 @@
 
 
 
-	<p th:if="${gameReview.gameExpansion}" th:text="${gameReview.gameExpansion.name}"></p>
+	<a th:if="${gameReview.gameExpansion}" th:href="@{/expansion(id=${gameReview.gameExpansion.id})}" th:text="${gameReview.gameExpansion.name}"></a>
 </body>
 </html>

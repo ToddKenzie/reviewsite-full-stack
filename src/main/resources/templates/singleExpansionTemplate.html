@@ -4,6 +4,26 @@
 	<title>Single Expansion</title>
 </head>
 <body>
-	<h1>Single Expansion</h1>
+	<h1><span th:text="${gameExpansion.name}">Expansion</span></h1>
+	<h2>An expansion for <span th:text="${gameExpansion.gameReview.name}">Game</span></h2>
+
+	<img th:src="@{'./images/' + ${gameExpansion.pictureLink}}" />
+
+	<li><span th:text="${gameExpansion.rangeOfPlayers}"></span></li>
+	<li><span th:text="${gameExpansion.timeToComplete}"></span></li>
+	<li><span th:text="${gameExpansion.synopsis}"></span></li>
+
+	<a th:href="@{${gameExpansion.weblink}}">Link to Expansion</a>
+
+	<div th:each="tag : ${tags}">
+		
+		<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
+		
+	</div>
+
+	<footer>
+		<a th:href="@{/game-review(id=${gameExpansion.gameReview.id})}">Back to <span th:text="${gameExpansion.gameReview.name}">The Game</span></a>
+		<a th:href="@{/allGameReviews}">Back to the Main Page</a>
+	</footer>
 </body>
 </html>
