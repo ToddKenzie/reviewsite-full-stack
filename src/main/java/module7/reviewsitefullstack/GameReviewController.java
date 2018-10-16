@@ -21,12 +21,18 @@ public class GameReviewController {
 	@Resource
 	private TagRepository tagRepo;
 
+	@Resource
+	private GameExpansionRepository gameExpansionRepo;
+
 	@RequestMapping("/game-review")
 	public String findOneGameReview(@RequestParam(value="id")long id, Model model) throws NoGameReviewFoundException {
 		Optional<GameReview> gameReview = gameReviewRepo.findById(id);
 		
 		if(gameReview.isPresent()) {
-			model.addAttribute("gameReviews", gameReview.get());
+			model.addAttribute("gameReview", gameReview.get());
+			model.addAttribute("gameCategory", gameCategoryRepo.findByGameReviewContains(gameReview.get()));
+			model.addAttribute("tags", tagRepo.findByGameReviewContains(gameReview.get()));
+			model.addAttribute("gameExpansion", gameExpansionRepo.findByGameReviewContains(gameReview.get()));
 			return "singleGameReviewTemplate";
 		}
 		throw new NoGameReviewFoundException();
@@ -43,7 +49,7 @@ public class GameReviewController {
 		Optional<GameCategory> gameCategory = gameCategoryRepo.findById(id);
 		
 		if(gameCategory.isPresent()) {
-			model.addAttribute("gameCategories", gameCategory.get());
+			model.addAttribute("gameCategory", gameCategory.get());
 			model.addAttribute("gameReviews", gameReviewRepo.findByGameCategoryContains(gameCategory.get()));
 			return "gameCategoryTemplate";
 		}
@@ -61,7 +67,7 @@ public class GameReviewController {
 		Optional<Tag> tag = tagRepo.findById(id);
 		
 		if(tag.isPresent()) {
-			model.addAttribute("tags", tag.get());
+			model.addAttribute("tag", tag.get());
 			model.addAttribute("gameReviews", gameReviewRepo.findByTagsContains(tag.get()));
 		}
 		
@@ -70,6 +76,20 @@ public class GameReviewController {
 	@RequestMapping("/allTags")
 	public void findAllTags(Model model) {
 		model.addAttribute("tags", tagRepo.findAll());
+	}
+
+	public void findOneExpansion(long id, Model model) {
+		Optional<GameExpansion> gameXp = gameExpansionRepo.findById(id);
+		
+		if(gameXp.isPresent()) {
+			model.addAttribute("gameExpansion", gameXp.get());
+			model.addAttribute("tags", tagRepo.findByGameExpansionContains(gameXp.get()));
+		}
+		
+	}
+
+	public void findAllExpansions(Model model) {
+		model.addAttribute("gameExpansions", gameExpansionRepo.findAll());
 	}
 
 }

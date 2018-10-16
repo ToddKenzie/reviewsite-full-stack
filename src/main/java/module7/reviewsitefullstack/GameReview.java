@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class GameReview {
@@ -18,6 +19,9 @@ public class GameReview {
 	private long id;
 	
 	private String name;
+	
+	@OneToOne(mappedBy = "gameReview")
+	private GameExpansion gameExpansion;
 	
 	@ManyToOne
 	private GameCategory gameCategory;
@@ -31,6 +35,10 @@ public class GameReview {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public GameExpansion getGameExpansion() {
+		return gameExpansion;
 	}
 	
 	public GameCategory getCategory() {
