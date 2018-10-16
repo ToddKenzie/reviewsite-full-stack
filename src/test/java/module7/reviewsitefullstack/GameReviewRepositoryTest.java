@@ -51,9 +51,9 @@ public class GameReviewRepositoryTest {
 		coop = tagRepo.save(new Tag("co-op"));
 		competitive = tagRepo.save(new Tag("competitive"));
 
-		review1 = gameReviewRepo.save(new GameReview("Root", "", "", "", "", "", board, coop, competitive));
-		review2 = gameReviewRepo.save(new GameReview("Concordia", "", "", "", "", "", board, competitive));
-		review3 = gameReviewRepo.save(new GameReview("The Mind", "", "", "", "", "", card, coop));
+		review1 = gameReviewRepo.save(new GameReview("Root", "", "", "", "", "", "", board, coop, competitive));
+		review2 = gameReviewRepo.save(new GameReview("Concordia", "", "", "", "", "", "", board, competitive));
+		review3 = gameReviewRepo.save(new GameReview("The Mind", "", "", "", "", "", "", card, coop));
 		
 		entity.flush();
 		entity.clear();

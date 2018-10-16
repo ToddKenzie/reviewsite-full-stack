@@ -6,26 +6,26 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GameReviewPopulator implements CommandLineRunner{
-	
+public class GameReviewPopulator implements CommandLineRunner {
+
 	@Resource
 	private GameCategoryRepository gameCategoryRepo;
-	
+
 	@Resource
 	private TagRepository tagRepo;
-	
+
 	@Resource
 	private GameReviewRepository gameReviewRepo;
-	
+
 	@Resource
 	private GameExpansionRepository gameExpansionRepo;
 
 	@Override
-	public void run(String...args) throws Exception {
-		
+	public void run(String... args) throws Exception {
+
 		GameCategory board = gameCategoryRepo.save(new GameCategory("board"));
 		GameCategory card = gameCategoryRepo.save(new GameCategory("card"));
-		
+
 		Tag singlePlayer = tagRepo.save(new Tag("single player"));
 		Tag twoPlayer = tagRepo.save(new Tag("2 player"));
 		Tag moreThanFive = tagRepo.save(new Tag("more than 5 player"));
@@ -40,14 +40,66 @@ public class GameReviewPopulator implements CommandLineRunner{
 		Tag abst = tagRepo.save(new Tag("abstract"));
 		Tag asymmetric = tagRepo.save(new Tag("asymmetric"));
 		Tag ninja = tagRepo.save(new Tag("ninjas"));
-		
-		
-		//String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink
-		GameReview root = gameReviewRepo.save(new GameReview("Root", "2-4", "60 to 90 min", "Multiple factions are vying for control of the forest (or just reputation) in their own, unique way.", "http://ledergames.com/root/", ".png", board, competitive, twoPlayer, strategy, asymmetric));
-		GameReview mind = gameReviewRepo.save(new GameReview("The Mind", "2-4", "20 min", "Simple rules: Play the cards in sequence.  The catch: you can't discuss what's in your hand at all.", "https://www.pandasaurusgames.com/product/the-mind/", ".png", card, coop, twoPlayer, strategy, abst));
-		GameReview blackOrchestra = gameReviewRepo.save(new GameReview("Black Orchestra", "1-5", "90 min", "You and your friends play as people inside Germany during the rise of Hitler attempting to kill him and stop his reign of terror.", "https://www.starling.games/black-orchestra/", ".png", board, coop, ww2, strategy, singlePlayer, twoPlayer));
-		GameReview concordia = gameReviewRepo.save(new GameReview("Concordia", "2-5", "90 min", "Part board game, part deck-builder: develop your trade network across Ancient Europe to dominate your rivals.", "http://riograndegames.com/Game/1279-Concordia", ".png", board, deckbuild, twoPlayer, strategy, competitive, greece));
-		GameReview grizzled = gameReviewRepo.save(new GameReview("The Grizzled", "3-5", "30 min", "Playing as a group of WWI soldiers from France, your objective is not to win the war, just survive it.", "https://cmon.com/product/the-grizzled/the-grizzled", ".png", card, coop, ww1, strategy));
-		GameReview wayOfPanda = gameReviewRepo.save(new GameReview("Way of the Panda", "2-4", "60 - 90 min", "Your clan and other panda clans are attempting to retake and rebuild your land from the human ninjas.", "https://cmon.com/product/way-of-the-panda/way-of-the-panda", ".png", board, strategy, competitive, twoPlayer, ninja));
+		Tag animals = tagRepo.save(new Tag("animals"));
+
+		// String name, String rangeOfPlayers, String timeToComplete, String synopsis,
+		// String weblink, String pictureLink
+		GameReview root = gameReviewRepo.save(new GameReview("Root", "2-4", "60 to 90 min",
+				"Multiple factions are vying for control of the forest (or just reputation) in their own, unique way.",
+				"http://ledergames.com/root/", "root.png",
+				"Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutter. <br /><br /> Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.",
+				board, competitive, animals, twoPlayer, strategy, asymmetric));
+		GameReview mind = gameReviewRepo.save(new GameReview("The Mind", "2-4", "20 min",
+				"Simple rules: Play the cards in sequence.  The catch: you can't discuss what's in your hand at all.",
+				"https://www.pandasaurusgames.com/product/the-mind/", "the-mind.png",
+				"Sutler scallywag Yellow Jack jolly boat ho measured fer yer chains rope's end hearties grog blossom draft. Hands holystone jib brigantine hogshead ho pinnace careen chandler scuttle. Gabion pillage barque lookout topgallant shrouds skysail bring a spring upon her cable barkadeer Blimey."
+						+ "<br /><br />"
+						+ "Quarter bilge water rutters lanyard heave to sheet hang the jib avast salmagundi skysail. Gold Road lugger barque loot aye wench hearties Buccaneer no prey, no pay port. Jack aft scuttle heave to case shot quarter hempen halter sloop Sea Legs heave down.",
+				card, coop, twoPlayer, strategy, abst));
+		GameReview blackOrchestra = gameReviewRepo.save(new GameReview("Black Orchestra", "1-5", "90 min",
+				"You and your friends play as people inside Germany during the rise of Hitler attempting to kill him and stop his reign of terror.",
+				"https://www.starling.games/black-orchestra/", "black-orchestra.png",
+				"Chase guns Letter of Marque wherry trysail matey fathom quarter starboard belaying pin gangplank. Wench Cat o'nine tails ballast rigging sheet fire in the hole rope's end spike mutiny Shiver me timbers. Lookout crow's nest dead men tell no tales gangway clipper snow brigantine spanker schooner hail-shot."
+						+ "<br /><br />"
+						+ "Lass loaded to the gunwalls grog lateen sail pillage gangplank driver splice the main brace hulk knave. Flogging grog blossom scuttle main sheet salmagundi rum stern provost hearties wench. Lugger blow the man down overhaul swing the lead man-of-war snow furl run a shot across the bow line scourge of the seven seas.",
+				board, coop, ww2, strategy, singlePlayer, twoPlayer));
+		GameReview concordia = gameReviewRepo.save(new GameReview("Concordia", "2-5", "90 min",
+				"Part board game, part deck-builder: develop your trade network across Ancient Europe to dominate your rivals.",
+				"http://riograndegames.com/Game/1279-Concordia", "concordia.png",
+				"Barkadeer hang the jib pink weigh anchor reef sails deadlights chandler Spanish Main tender marooned. Line nipper marooned lugsail lateen sail weigh anchor aye strike colors Shiver me timbers provost. Maroon grapple lanyard log scurvy American Main spanker Jack Ketch yardarm Blimey.\r\n"
+						+ "<br /><br />"
+						+ "Sheet bilged on her anchor jib wench stern jack swab fire in the hole clap of thunder gangplank. Poop deck gangplank ballast wherry lad starboard fire ship code of conduct reef crack Jennys tea cup. Draft jury mast strike colors gibbet measured fer yer chains lookout avast spyglass scurvy code of conduct.",
+				board, deckbuild, twoPlayer, strategy, competitive, greece));
+		GameReview grizzled = gameReviewRepo.save(new GameReview("The Grizzled", "3-5", "30 min",
+				"Playing as a group of WWI soldiers from France, your objective is not to win the war, just survive it.",
+				"https://cmon.com/product/the-grizzled/the-grizzled", "the-grizzled.png",
+				"Jack Tar jib Jack Ketch jack killick jolly boat lad sutler keel parrel. Rigging bring a spring upon her cable crimp Gold Road lookout landlubber or just lubber gally Jack Ketch topmast heave to. Bowsprit lookout scourge of the seven seas Shiver me timbers American Main keelhaul jury mast clap of thunder black spot knave."
+						+ "<br /><br />"
+						+ "Gun jolly boat ye scallywag maroon fire in the hole belaying pin Blimey parley bucko. Nipperkin hang the jib reef sails swab jury mast gabion Sea Legs Corsair quarter coxswain. Nelsons folly belaying pin fathom skysail stern Davy Jones' Locker lateen sail Sea Legs wench hardtack.",
+				card, coop, ww1, strategy));
+		GameReview wayOfPanda = gameReviewRepo.save(new GameReview("Way of the Panda", "2-4", "60 - 90 min",
+				"Your clan and other panda clans are attempting to retake and rebuild your land from the human ninjas.",
+				"https://cmon.com/product/way-of-the-panda/way-of-the-panda", "way-of-the-panda.png",
+				"Careen bowsprit bilge water red ensign ye lee chase guns me list Spanish Main. Ho blow the man down salmagundi barque Cat o'nine tails Spanish Main snow crow's nest grapple plunder. Grapple rope's end quarterdeck scuttle fire ship marooned brig me topgallant bring a spring upon her cable."
+						+ "<br /><br />"
+						+ "Parley crack Jennys tea cup Buccaneer gabion Plate Fleet pinnace log square-rigged belaying pin yardarm. Lee log jury mast chase line Arr draught mizzen quarterdeck Pieces of Eight. Bring a spring upon her cable cackle fruit gangway to go on account matey crack Jennys tea cup Plate Fleet six pounders hempen halter grog blossom.",
+				board, animals, strategy, competitive, twoPlayer, ninja));
+
+		GameExpansion concordiaSalsa = gameExpansionRepo.save(new GameExpansion("Concordia Salsa", "2-5", "90 min",
+				"Salsa adds a new double sided board, a new \"wildcard\" resource, and a forum of upgrade cards to change the dynamics of the game.  There are also other boards that can be purchased separately to create new variants of the game.",
+				"http://riograndegames.com/Game/1303-Concordia-Salsa", "salsa.png", concordia, twoPlayer, strategy,
+				deckbuild, greece, competitive));
+		GameExpansion rootRiverFolk = gameExpansionRepo.save(new GameExpansion("Root: The Riverfolk Expansion", "1-6",
+				"60 to 90 min",
+				"Riverfolk add 2 new factions, an additional Vagabond, and an AI-played Cat faction to increase the opportunities, variants, players, and fun.",
+				"https://leder-games.myshopify.com/products/root-the-riverfolk-expansion?variant=19417078726714",
+				"river-folk.png", root, singlePlayer, twoPlayer, moreThanFive, competitive, coop, animals, asymmetric,
+				strategy));
+		GameExpansion grizzledAtYourOrders = gameExpansionRepo.save(new GameExpansion("The Grizzled: At Your Orders!",
+				"1-5", "30 min",
+				"At Your Orders! adds a task deck that you can modify the difficulty.  This expansion helps balance the game in ways due to the new mechanics introduced.  The expansion also adds a solo-play variant.",
+				"https://www.coolstuffinc.com/p/225304", "orders.png", grizzled, coop, singlePlayer, twoPlayer, ww1,
+				strategy));
+
 	}
 }

@@ -1,0 +1,35 @@
+body {
+	font-family: Raleway, Calibri, sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #eac9ff;
+}
+
+.main-container {
+	margin: 0;
+	border: 3px solid #7606f7;
+	padding: 20px;
+	background-color: #fdfdfd;
+}
+
+h1 {
+	color: #6604d8;
+	text-align: center;
+}
+
+.game-image {
+	display: block;
+	width: 50%;
+	min-width: 250px;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.links {
+	font-size: 12px;
+}
+
+.right-link {
+	float: right;
+}

@@ -1,0 +1,46 @@
+body {
+	font-family: Raleway, Calibri, sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #eac9ff;
+    text-align: center;
+}
+
+.main-container {
+	margin: 0;
+	border: 3px solid #7606f7;
+	padding: 20px;
+	background-color: #fdfdfd;
+}
+
+h1 {
+	color: #6604d8;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.main-image {
+	width: 75%;
+	min-width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.co {
+	text-align: right;
+    font-family: fantasy;
+    font-size: 12px;
+    color: #64058a;
+    margin-top: 30px;
+}
+
+

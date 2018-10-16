@@ -1,0 +1,59 @@
+body {
+	font-family: Raleway, Calibri, sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #eac9ff;
+}
+
+.main-container {
+	margin: 0;
+	border: 3px solid #7606f7;
+	padding: 20px;
+	background-color: #fdfdfd;
+}
+
+h1 {
+	color: #6604d8;
+	text-align: center;
+}
+
+.link {
+	float: right;
+	font-size: 12px;
+}
+
+.tags {
+	font-weight: 600;
+	padding: 5px 5px;
+	display: inline;
+}
+
+button {
+	background-color: #3b8635; 
+    border: none;
+    color: white;
+    border-radius: 4px;
+  	padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.buttons {
+	display: inline-block; 
+	padding-inline-start: 5px;
+	margin: 5px 0;
+}
+
+.game-image {
+	display: block;
+	width: 50%;
+	min-width: 250px;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -17,6 +18,9 @@ public class GameReview extends PlayedObject{
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@Lob
+	private String review;
 	
 	@OneToOne(mappedBy = "gameReview")
 	private GameExpansion gameExpansion;
@@ -45,8 +49,9 @@ public class GameReview extends PlayedObject{
 
 	public GameReview() {}
 	
-	public GameReview(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink, GameCategory gameCategory, Tag...tags) {
+	public GameReview(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink, String review, GameCategory gameCategory, Tag...tags) {
 		super(name, rangeOfPlayers, timeToComplete, synopsis, weblink, pictureLink);
+		this.review = review;
 		this.gameCategory = gameCategory;
 		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
