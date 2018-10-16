@@ -40,6 +40,8 @@ public class GameReviewPopulator implements CommandLineRunner{
 		Tag abst = tagRepo.save(new Tag("abstract"));
 		Tag asymmetric = tagRepo.save(new Tag("asymmetric"));
 		
+		
+		//String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink
 		GameReview root = gameReviewRepo.save(new GameReview("Root", board, competitive, twoPlayer, strategy, asymmetric));
 		GameReview mind = gameReviewRepo.save(new GameReview("The Mind", card, coop, twoPlayer, strategy, abst));
 		

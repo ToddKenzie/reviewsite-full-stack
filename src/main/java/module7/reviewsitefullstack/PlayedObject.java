@@ -34,6 +34,9 @@ public abstract class PlayedObject {
 		return pictureLink;
 	}
 	
+	
+	public PlayedObject() {}
+	
 	public PlayedObject(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink) {
 		this.name = name;
 		this.rangeOfPlayers = rangeOfPlayers;
