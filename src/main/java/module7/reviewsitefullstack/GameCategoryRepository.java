@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface GameCategoryRepository extends CrudRepository<GameCategory, Long> {
 
-	GameCategory findByGameReviewContains(GameReview gameReview);
+	GameCategory findByGameReviewsContains(GameReview gameReview);
 
 }

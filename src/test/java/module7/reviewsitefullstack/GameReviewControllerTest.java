@@ -76,7 +76,7 @@ public class GameReviewControllerTest {
 	@Test
 	public void findSingleCategoryForSingleGameReviewToModel() throws Exception {
 		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));
-		when(gameCategoryRepo.findByGameReviewContains(reviewA)).thenReturn(gameCatA);
+		when(gameCategoryRepo.findByGameReviewsContains(reviewA)).thenReturn(gameCatA);
 		
 		underTest.findOneGameReview(arbitraryId, model);
 		verify(model).addAttribute("gameCategory", gameCatA);
@@ -96,7 +96,7 @@ public class GameReviewControllerTest {
 	public void findAllTagsForSingleGameReviewInModel() throws Exception {
 		Collection<Tag> allTagsForReview = Arrays.asList(tagA, tagB);
 		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));
-		when(tagRepo.findByGameReviewContains(reviewA)).thenReturn(allTagsForReview);
+		when(tagRepo.findByGameReviewsContains(reviewA)).thenReturn(allTagsForReview);
 		
 		underTest.findOneGameReview(arbitraryId, model);
 		verify(model).addAttribute("tags", allTagsForReview);
@@ -179,7 +179,7 @@ public class GameReviewControllerTest {
 	public void findAllTagsForSingleExpansionToModel() throws Exception {
 		Collection<Tag> allTagsForXp = Arrays.asList(tagA, tagB);
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp1));
-		when(tagRepo.findByGameExpansionContains(gameXp1)).thenReturn(allTagsForXp);
+		when(tagRepo.findByGameExpansionsContains(gameXp1)).thenReturn(allTagsForXp);
 		
 		underTest.findOneExpansion(arbitraryId, model);
 		verify(model).addAttribute("tags", allTagsForXp);

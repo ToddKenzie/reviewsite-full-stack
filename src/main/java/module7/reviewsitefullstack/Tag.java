@@ -13,27 +13,34 @@ public class Tag {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String keyword;
+	private String name;
 	
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameReview> gameReviews;
+	
+	@ManyToMany(mappedBy = "tags")
+	private Collection<GameExpansion> gameExpansions;
 	
 	public long getId() {
 		return id;
 	}
 	
 	public String getKeyword() {
-		return keyword;
+		return name;
 	}
 	
 	public Collection<GameReview> getGameReviews() {
 		return gameReviews;
 	}
+	
+	public Collection<GameExpansion> getGameExpansions() {
+		return gameExpansions;
+	}
 
 	public Tag() {}
 	
 	public Tag(String keyword) {
-		this.keyword = keyword;
+		this.name = keyword;
 	}
 
 	@Override

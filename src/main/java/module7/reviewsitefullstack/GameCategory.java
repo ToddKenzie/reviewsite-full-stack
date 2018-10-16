@@ -14,7 +14,7 @@ public class GameCategory {
 	@GeneratedValue
 	private long id;
 	
-	private String type;
+	private String name;
 	
 	@OneToMany(mappedBy = "gameCategory")
 	private Collection<GameReview> gameReviews;
@@ -24,7 +24,7 @@ public class GameCategory {
 	}
 	
 	public String getType() {
-		return type;
+		return name;
 	}
 	
 	public Collection<GameReview> getGameReviews() {
@@ -34,7 +34,7 @@ public class GameCategory {
 	public GameCategory() {}
 	
 	public GameCategory(String type) {
-		this.type = type;
+		this.name = type;
 	}
 
 	@Override
