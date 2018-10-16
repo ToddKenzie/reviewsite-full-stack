@@ -25,14 +25,14 @@ public class GameReviewController {
 	private GameExpansionRepository gameExpansionRepo;
 
 	@RequestMapping("/game-review")
-	public String findOneGameReview(@RequestParam(value="id")long id, Model model) throws NoGameReviewFoundException {
+	public String findOneGameReview(@RequestParam(value="id")Long id, Model model) throws NoGameReviewFoundException {
 		Optional<GameReview> gameReview = gameReviewRepo.findById(id);
 		
 		if(gameReview.isPresent()) {
 			model.addAttribute("gameReview", gameReview.get());
 			model.addAttribute("gameCategory", gameCategoryRepo.findByGameReviewsContains(gameReview.get()));
 			model.addAttribute("tags", tagRepo.findByGameReviewsContains(gameReview.get()));
-			model.addAttribute("gameExpansion", gameExpansionRepo.findByGameReviewContains(gameReview.get()));
+//			model.addAttribute("gameExpansion", gameExpansionRepo.findByGameReviewContains(gameReview.get()));
 			return "singleGameReviewTemplate";
 		}
 		throw new NoGameReviewFoundException();

@@ -5,5 +5,9 @@
 </head>
 <body>
 	<h1>All Game Reviews</h1>
+
+	<ul>
+		<li th:each="review : ${gameReviews}"><a th:href="@{/game-review(id=${review.id})}" th:text="${review.name}"></a></li>
+	</ul>
 </body>
 </html>

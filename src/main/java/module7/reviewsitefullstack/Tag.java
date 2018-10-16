@@ -10,19 +10,11 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Tag extends Grouping {
 
-	@Id
-	@GeneratedValue
-	private long id;
-	
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameReview> gameReviews;
 	
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameExpansion> gameExpansions;
-	
-	public long getId() {
-		return id;
-	}
 	
 	public Collection<GameReview> getGameReviews() {
 		return gameReviews;

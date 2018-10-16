@@ -84,15 +84,6 @@ public class GameReviewControllerTest {
 	}
 	
 	@Test
-	public void findSingleExpansionForSingleReviewToModel() throws Exception {
-		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));
-		when(gameExpansionRepo.findByGameReviewContains(reviewA)).thenReturn(gameXp1);
-		
-		underTest.findOneGameReview(arbitraryId, model);
-		verify(model).addAttribute("gameExpansion", gameXp1);
-	}
-	
-	@Test
 	public void findAllTagsForSingleGameReviewInModel() throws Exception {
 		Collection<Tag> allTagsForReview = Arrays.asList(tagA, tagB);
 		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));

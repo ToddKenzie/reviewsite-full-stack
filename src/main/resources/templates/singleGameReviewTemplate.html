@@ -4,6 +4,10 @@
 	<title>Single Review</title>
 </head>
 <body>
-	<h1>Single Review</h1>
+	<h1 th:text="${gameReview.name}"></h1>
+
+
+
+	<p th:if="${gameReview.gameExpansion}" th:text="${gameReview.gameExpansion.name}"></p>
 </body>
 </html>

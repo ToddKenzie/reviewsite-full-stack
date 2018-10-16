@@ -14,19 +14,11 @@ import javax.persistence.OneToOne;
 @Entity
 public class GameExpansion extends PlayedObject{
 
-	@Id
-	@GeneratedValue
-	private long id;
-	
 	@OneToOne
 	private GameReview gameReview;
 
 	@ManyToMany
 	private Collection<Tag> tags;
-
-	public long getId() {
-		return id;
-	}
 
 	public GameReview getGameReview() {
 		return gameReview;
@@ -35,7 +27,6 @@ public class GameExpansion extends PlayedObject{
 	public Collection<Tag> getTags() {
 		return tags;
 	}
-	
 	
 	public GameExpansion() {}
 	

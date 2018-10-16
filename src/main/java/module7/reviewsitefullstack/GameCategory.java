@@ -10,16 +10,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class GameCategory extends Grouping {
 
-	@Id
-	@GeneratedValue
-	private long id;
-	
 	@OneToMany(mappedBy = "gameCategory")
 	private Collection<GameReview> gameReviews;
-	
-	public long getId() {
-		return id;
-	}
 	
 	public Collection<GameReview> getGameReviews() {
 		return gameReviews;
