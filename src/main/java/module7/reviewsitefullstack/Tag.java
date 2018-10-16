@@ -8,12 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Tag {
+public class Tag extends Grouping {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	private String name;
 	
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameReview> gameReviews;
@@ -23,10 +22,6 @@ public class Tag {
 	
 	public long getId() {
 		return id;
-	}
-	
-	public String getKeyword() {
-		return name;
 	}
 	
 	public Collection<GameReview> getGameReviews() {
@@ -39,8 +34,8 @@ public class Tag {
 
 	public Tag() {}
 	
-	public Tag(String keyword) {
-		this.name = keyword;
+	public Tag(String name) {
+		super(name);
 	}
 
 	@Override
@@ -64,6 +59,5 @@ public class Tag {
 			return false;
 		return true;
 	}
-	
 
 }

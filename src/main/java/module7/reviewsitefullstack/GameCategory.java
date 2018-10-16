@@ -8,13 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class GameCategory {
+public class GameCategory extends Grouping {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	private String name;
 	
 	@OneToMany(mappedBy = "gameCategory")
 	private Collection<GameReview> gameReviews;
@@ -23,18 +21,14 @@ public class GameCategory {
 		return id;
 	}
 	
-	public String getType() {
-		return name;
-	}
-	
 	public Collection<GameReview> getGameReviews() {
 		return gameReviews;
 	}
 
 	public GameCategory() {}
 	
-	public GameCategory(String type) {
-		this.name = type;
+	public GameCategory(String name) {
+		super(name);
 	}
 
 	@Override
