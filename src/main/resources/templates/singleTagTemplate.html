@@ -4,6 +4,13 @@
 	<title>Single Tag</title>
 </head>
 <body>
-	<h1>Single Tag</h1>
+	<h1>Tag: <span th:text="${tag.name}">unknown</span></h1>
 </body>
+
+<div th:each="review : ${gameReviews}">
+	<h3>Games with this tag</h3>
+	<li th:text=""></li>
+</div>
+
+
 </html>
