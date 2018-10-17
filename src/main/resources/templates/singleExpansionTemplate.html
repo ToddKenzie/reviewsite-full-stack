@@ -2,8 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Single Expansion</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/review.css}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
+	<div class="main-container">
 	<h1><span th:text="${gameExpansion.name}">Expansion</span></h1>
 	<h2>An expansion for <span th:text="${gameExpansion.gameReview.name}">Game</span></h2>
 
@@ -13,7 +17,7 @@
 	<li><span th:text="${gameExpansion.timeToComplete}"></span></li>
 	<li><span th:text="${gameExpansion.synopsis}"></span></li>
 
-	<a th:href="@{${gameExpansion.weblink}}">Link to Expansion</a>
+	<a th:href="@{${gameExpansion.weblink}}">External Link to Expansion</a>
 
 	<div th:each="tag : ${tags}">
 		
@@ -21,9 +25,14 @@
 		
 	</div>
 
-	<footer>
+	<nav>
 		<a th:href="@{/game-review(id=${gameExpansion.gameReview.id})}">Back to <span th:text="${gameExpansion.gameReview.name}">The Game</span></a>
 		<a th:href="@{/allGameReviews}">Back to the Main Page</a>
+	</nav>
+
+	<footer>
+		<p class="co">&copy; MopamusWrex Gaming 2018</p>
 	</footer>
+</div>
 </body>
 </html>

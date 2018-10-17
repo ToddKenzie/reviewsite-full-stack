@@ -41,6 +41,7 @@ public class GameReviewController {
 	@RequestMapping("/allGameReviews")
 	public String findAllGameReviews(Model model) {
 		model.addAttribute("gameReviews", gameReviewRepo.findAll());
+		model.addAttribute("gameCategories", gameCategoryRepo.findAll());
 		return "gameReviewsTemplate";
 	}
 

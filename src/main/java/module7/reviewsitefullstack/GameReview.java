@@ -27,6 +27,10 @@ public class GameReview extends PlayedObject{
 	@ManyToMany
 	private Collection<Tag> tags;
 	
+	public String getReview() {
+		return review;
+	}
+	
 	public GameExpansion getGameExpansion() {
 		return gameExpansion;
 	}

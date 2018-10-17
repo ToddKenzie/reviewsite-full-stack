@@ -17,15 +17,21 @@ h1 {
 	color: #6604d8;
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
 ul {
 	list-style: none;
 	padding: 0;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+.lists {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1em;
 }
 
 .main-image {
