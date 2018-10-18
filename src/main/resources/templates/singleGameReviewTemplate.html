@@ -24,7 +24,7 @@
 
 		<a th:if="${gameReview.gameExpansion}" th:href="@{/expansion(id=${gameReview.gameExpansion.id})}" th:text="${gameReview.gameExpansion.name}"></a>
 		
-		<div th:each="tag : ${tags}">
+		<div th:each="tag : ${gameReview.tags}">
 		
 			<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
 		

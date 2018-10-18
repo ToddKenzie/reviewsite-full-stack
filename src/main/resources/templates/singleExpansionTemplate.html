@@ -19,7 +19,7 @@
 
 	<a th:href="@{${gameExpansion.weblink}}">External Link to Expansion</a>
 
-	<div th:each="tag : ${tags}">
+	<div th:each="tag : ${gameExpansion.tags}">
 		
 		<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
 		

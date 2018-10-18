@@ -2,15 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Single Tag</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/review.css}">
 </head>
 <body>
-	<h1>Tag: <span th:text="${tag.name}">unknown</span></h1>
+	<div class="main-container">
+		<h1>Tag: <span th:text="${tag.name}">unknown</span></h1>
+
+
+		<article th:if="${tag.gameReviews}">
+			<h3>Game Reviews with this Tag</h3>
+			<ul th:each="review : ${tag.gameReviews}">
+				<li><a th:href="@{/game-review(id=${review.id})}" th:text="${review.name}"></a></li>
+			</ul>
+		</article>
+
+		<article>
+			<h3>Game Expansions with this Tag</h3>
+			<ul th:each="expansion : ${tag.gameExpansions}">
+				<li><a th:href="@{/expansion(id=${expansion.id})}" th:text="${expansion.name}"></a></li>
+			</ul>
+		</article>
+
+		<nav>
+			
+		</nav>
+
+		<footer>
+			<p class="co">&copy; MopamusWrex Gaming 2018</p>
+		</footer>
+	</div>
 </body>
-
-<div th:each="review : ${gameReviews}">
-	<h3>Games with this tag</h3>
-	<li th:text=""></li>
-</div>
-
-
 </html>
