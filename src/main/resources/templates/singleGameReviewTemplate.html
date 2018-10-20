@@ -9,27 +9,33 @@
 </head>
 <body>
 	<div class="main-container">
-		<h1 th:text="${gameReview.name}"></h1>
-
-		<p>Game Category: <a th:href="@{/game-category(id=${gameCategory.id})}" th:text="${gameCategory.name}"></a></p>
-		<img th:src="@{'./images/' + ${gameReview.pictureLink}}" />
-
-		<li><span th:text="${gameReview.rangeOfPlayers}"></span></li>
-		<li><span th:text="${gameReview.timeToComplete}"></span></li>
-		<li><span th:text="${gameReview.synopsis}"></span></li>
-
-		<p th:utext="${gameReview.review}"></p>
-
-		<a th:href="@{${gameReview.weblink}}">External Link to Game</a>
-
-		<a th:if="${gameReview.gameExpansion}" th:href="@{/expansion(id=${gameReview.gameExpansion.id})}" th:text="${gameReview.gameExpansion.name}"></a>
+		<header>
+			<h1 th:text="${gameReview.name}"></h1>
+			<h3 th:text="${gameReview.synopsis}"></h3>
+			<hr>
+			<p>Game Category: <a th:href="@{/game-category(id=${gameCategory.id})}" th:text="${gameCategory.name}"></a></p>
+		</header>
 		
-		<div th:each="tag : ${gameReview.tags}">
-		
-			<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
-		
-		</div>
+		<main>
+			<img th:src="@{'./images/' + ${gameReview.pictureLink}}" />
 
+			<ul>
+				<li><span th:text="${gameReview.rangeOfPlayers}"></span></li>
+				<li><span th:text="${gameReview.timeToComplete}"></span></li>
+			</ul>
+
+			<p th:utext="${gameReview.review}"></p>
+
+			<a th:href="@{${gameReview.weblink}}">External Link to Game</a>
+
+			<a th:if="${gameExpansion}" th:href="@{/expansion(id=${gameExpansion.id})}" th:text="${gameExpansion.name}"></a>
+			
+			<div th:each="tag : ${gameReview.tags}">
+				<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
+			</div>
+
+		</main>
+		
 		<nav>
 			<a th:href="@{/allGameReviews}">Back to the Main Page</a>
 		</nav>

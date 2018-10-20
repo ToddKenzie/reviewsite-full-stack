@@ -97,7 +97,7 @@ public class GameReviewControllerTest {
 	@Test
 	public void addAllGameReviewsToModel() throws Exception {
 		Collection<GameReview> allReviews = Arrays.asList(reviewA, reviewB);
-		when(gameReviewRepo.findAll()).thenReturn(allReviews);
+		when(gameReviewRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
 		
 		underTest.findAllGameReviews(model);
 		verify(model).addAttribute("gameReviews", allReviews);
@@ -152,7 +152,7 @@ public class GameReviewControllerTest {
 	@Test
 	public void addAllTagsToModel() throws Exception {
 		Collection<Tag> allTags = Arrays.asList(tagA, tagB);
-		when(tagRepo.findAll()).thenReturn(allTags);
+		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
 		
 		underTest.findAllTags(model);
 		verify(model).addAttribute("tags", allTags);

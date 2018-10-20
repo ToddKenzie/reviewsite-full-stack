@@ -72,6 +72,9 @@ public class GameReviewControllerMockMvcTest {
 	@Test
 	public void shouldBeOkAndRouteToSingleGameReviewSite() throws Exception {
 		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(gameReview));
+		when(gameCategoryRepo.findByGameReviewsContains(gameReview)).thenReturn(gameCat);
+		when(gameExpansionRepo.findByGameReview(gameReview)).thenReturn(gameXp);
+
 		mvc.perform(get("/game-review?id=1")).andExpect(status().isOk());
 		mvc.perform(get("/game-review?id=1")).andExpect(view().name(is("singleGameReviewTemplate")));
 	}
@@ -84,6 +87,8 @@ public class GameReviewControllerMockMvcTest {
 	@Test
 	public void shouldPutSingleGameReviewIntoModel() throws Exception {
 		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(gameReview));
+		when(gameCategoryRepo.findByGameReviewsContains(gameReview)).thenReturn(gameCat);
+		when(gameExpansionRepo.findByGameReview(gameReview)).thenReturn(gameXp);
 		mvc.perform(get("/game-review?id=1")).andExpect(model().attribute("gameReview", is(gameReview)));
 	}
 	
@@ -173,6 +178,7 @@ public class GameReviewControllerMockMvcTest {
 	@Test
 	public void shouldBeOkAndRouteToSingleExpansionSite() throws Exception {
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
+		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
 		mvc.perform(get("/expansion?id=1")).andExpect(status().isOk());
 		mvc.perform(get("/expansion?id=1")).andExpect(view().name(is("singleExpansionTemplate")));
 	}
@@ -185,6 +191,7 @@ public class GameReviewControllerMockMvcTest {
 	@Test
 	public void shouldAddSingleExpansionIntoModel() throws Exception {
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
+		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
 		mvc.perform(get("/expansion?id=1")).andExpect(model().attribute("gameExpansion", gameXp));
 		
 	}

@@ -7,34 +7,38 @@
 </head>
 <body>
 	<div class="main-container">
-		<h1>BoardGame HotSite</h1>
+		<header>
+			<h1>BoardGame HotSite</h1>
+			<p>Welcome to the coolest site around: what you'll find may be profound</p>
+			<hr>
+		</header>
 
-		<p>Welcome to the coolest site around: what you'll find may be profound</p>
+		<main>
+			<section class="lists">
+				<article>
+					<h3>Here's a list of reviews fit to peruse</h3>
 
-		<hr>
+					<ul>
+						<li th:each="review : ${gameReviews}"><a th:href="@{/game-review(id=${review.id})}" th:text="${review.name}"></a></li>
+					</ul>
+				</article>
 
-		<section class="lists">
-			<article>
-				<h3>Here's a list of reviews fit to peruse</h3>
+				<article>
+					<h3>Here are categories so you can find what kind of games may tickle your mind</h3>
 
-				<ul>
-					<li th:each="review : ${gameReviews}"><a th:href="@{/game-review(id=${review.id})}" th:text="${review.name}"></a></li>
-				</ul>
-			</article>
+					<ul>
+						<li th:each="category : ${gameCategories}"><a th:href="@{/game-category(id=${category.id})}" th:text="${category.name}"></a></li>
+					</ul>
+				</article>
+			</section>
 
-			<article>
-				<h3>Here are categories so you can find what kind of games may tickle your mind</h3>
-
-				<ul>
-  					<li th:each="category : ${gameCategories}"><a th:href="@{/game-category(id=${category.id})}" th:text="${category.name}"></a></li>
-				</ul>
-			</article>
-		</section>
-
-		<img src="/images/gameroom.jpg" class="main-image">
+			<img src="/images/gameroom.jpg" class="main-image">
 		
-		<nav>
+		</main>
 
+		<nav>
+			<a th:href="@{/allGameCategories}">To All Categories</a>
+			<a th:href="@{/allTags}">To All Tags</a>
 		</nav>
 
 		<footer>

@@ -8,25 +8,29 @@
 </head>
 <body>
 	<div class="main-container">
-	<h1><span th:text="${gameExpansion.name}">Expansion</span></h1>
-	<h2>An expansion for <span th:text="${gameExpansion.gameReview.name}">Game</span></h2>
+		<header>
+			<h1><span th:text="${gameExpansion.name}">Expansion</span></h1>
+			<h2>An expansion for <span th:text="${gameReview.name}">Game</span></h2>
+			<hr>
+		</header>
+	
+		<main>
+	
+		<img th:src="@{'./images/' + ${gameExpansion.pictureLink}}" />
 
-	<img th:src="@{'./images/' + ${gameExpansion.pictureLink}}" />
+		<li><span th:text="${gameExpansion.rangeOfPlayers}"></span></li>
+		<li><span th:text="${gameExpansion.timeToComplete}"></span></li>
+		<li><span th:text="${gameExpansion.synopsis}"></span></li>
 
-	<li><span th:text="${gameExpansion.rangeOfPlayers}"></span></li>
-	<li><span th:text="${gameExpansion.timeToComplete}"></span></li>
-	<li><span th:text="${gameExpansion.synopsis}"></span></li>
+		<a th:href="@{${gameExpansion.weblink}}">External Link to Expansion</a>
 
-	<a th:href="@{${gameExpansion.weblink}}">External Link to Expansion</a>
+		<div th:each="tag : ${gameExpansion.tags}">
+			<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
+		</div>
 
-	<div th:each="tag : ${gameExpansion.tags}">
-		
-		<a th:href="@{/tag(id=${tag.id})}"><button  th:text="${tag.name}"></button></a>
-		
-	</div>
-
+	</main>
 	<nav>
-		<a th:href="@{/game-review(id=${gameExpansion.gameReview.id})}">Back to <span th:text="${gameExpansion.gameReview.name}">The Game</span></a>
+		<a th:href="@{/game-review(id=${gameReview.id})}">Back to <span th:text="${gameReview.name}">The Game</span></a>
 		<a th:href="@{/allGameReviews}">Back to the Main Page</a>
 	</nav>
 

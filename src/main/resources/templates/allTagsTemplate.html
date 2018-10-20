@@ -2,8 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>All Tags</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/review.css}">
 </head>
 <body>
-	<h1>All Tags</h1>
+	<div class="main-container">
+		<header>
+			<h1>All Tags</h1>
+			<hr>
+		</header>
+
+		<main>
+			<ul>
+				<li th:each="tag : ${tags}"><a th:href="@{/tag(id=${tag.id})}" th:text="${tag.name}"></a></li>
+			</ul>
+
+		</main>
+
+		<nav>
+			<a th:href="@{allGameReviews}">Go to Main Page</a>
+		</nav>
+
+		<footer>
+			<p class="co">&copy; MopamusWrex Gaming 2018</p>
+		</footer>
+	</div>
 </body>
 </html>

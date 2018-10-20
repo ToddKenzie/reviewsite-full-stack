@@ -23,24 +23,25 @@ public class GameReviewPopulator implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		GameCategory board = gameCategoryRepo.save(new GameCategory("board"));
-		GameCategory card = gameCategoryRepo.save(new GameCategory("card"));
-
-		Tag singlePlayer = tagRepo.save(new Tag("single player"));
+		GameCategory board = gameCategoryRepo.save(new GameCategory("Board"));
+		GameCategory card = gameCategoryRepo.save(new GameCategory("Card"));
+		GameCategory dice = gameCategoryRepo.save(new GameCategory("Dice"));
+		
+		Tag singlePlayer = tagRepo.save(new Tag("Single player"));
 		Tag twoPlayer = tagRepo.save(new Tag("2 player"));
-		Tag moreThanFive = tagRepo.save(new Tag("more than 5 player"));
-		Tag coop = tagRepo.save(new Tag("co-operative"));
-		Tag competitive = tagRepo.save(new Tag("competitive"));
-		Tag deckbuild = tagRepo.save(new Tag("deck-builder"));
-		Tag strategy = tagRepo.save(new Tag("strategy"));
-		Tag luck = tagRepo.save(new Tag("luck"));
+		Tag moreThanFive = tagRepo.save(new Tag("More than 5 player"));
+		Tag coop = tagRepo.save(new Tag("Co-operative"));
+		Tag competitive = tagRepo.save(new Tag("Competitive"));
+		Tag deckbuild = tagRepo.save(new Tag("Deck-builder"));
+		Tag strategy = tagRepo.save(new Tag("Strategy"));
+		Tag luck = tagRepo.save(new Tag("Luck"));
 		Tag ww2 = tagRepo.save(new Tag("WW II"));
 		Tag ww1 = tagRepo.save(new Tag("WW I"));
 		Tag greece = tagRepo.save(new Tag("Ancient Greece"));
-		Tag abst = tagRepo.save(new Tag("abstract"));
-		Tag asymmetric = tagRepo.save(new Tag("asymmetric"));
-		Tag ninja = tagRepo.save(new Tag("ninjas"));
-		Tag animals = tagRepo.save(new Tag("animals"));
+		Tag abst = tagRepo.save(new Tag("Abstract"));
+		Tag asymmetric = tagRepo.save(new Tag("Asymmetric"));
+		Tag ninja = tagRepo.save(new Tag("Ninjas"));
+		Tag animals = tagRepo.save(new Tag("Animals"));
 
 		// String name, String rangeOfPlayers, String timeToComplete, String synopsis,
 		// String weblink, String pictureLink

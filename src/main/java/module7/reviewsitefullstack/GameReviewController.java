@@ -6,9 +6,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@CrossOrigin
 @Controller
 public class GameReviewController {
 	
@@ -40,7 +42,7 @@ public class GameReviewController {
 
 	@RequestMapping("/allGameReviews")
 	public String findAllGameReviews(Model model) {
-		model.addAttribute("gameReviews", gameReviewRepo.findAll());
+		model.addAttribute("gameReviews", gameReviewRepo.findAllByOrderByNameAsc());
 		model.addAttribute("gameCategories", gameCategoryRepo.findAll());
 		return "gameReviewsTemplate";
 	}
@@ -79,7 +81,7 @@ public class GameReviewController {
 
 	@RequestMapping("/allTags")
 	public String findAllTags(Model model) {
-		model.addAttribute("tags", tagRepo.findAll());
+		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
 		return "allTagsTemplate";
 	}
 
@@ -90,6 +92,7 @@ public class GameReviewController {
 		
 		if(gameXp.isPresent()) {
 			model.addAttribute("gameExpansion", gameXp.get());
+			model.addAttribute("gameReview", gameReviewRepo.findByGameExpansion(gameXp.get()));
 			model.addAttribute("tags", tagRepo.findByGameExpansionsContains(gameXp.get()));
 			return "singleExpansionTemplate";
 		}
