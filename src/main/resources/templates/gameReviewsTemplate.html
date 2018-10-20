@@ -26,7 +26,7 @@
 				<h3>Here are categories so you can find what kind of games may tickle your mind</h3>
 
 				<ul>
-					<li th:each="category : ${gameCategories}"><a th:href="@{/game-category(id=${category.id})}" th:text="${category.name}"></a></li>
+  					<li th:each="category : ${gameCategories}"><a th:href="@{/game-category(id=${category.id})}" th:text="${category.name}"></a></li>
 				</ul>
 			</article>
 		</section>

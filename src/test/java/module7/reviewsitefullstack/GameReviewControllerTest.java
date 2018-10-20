@@ -115,7 +115,7 @@ public class GameReviewControllerTest {
 	public void findAllGameReviewsWithCategoryInModel() throws Exception {
 		Collection<GameReview> allReviewsWithCategory = Arrays.asList(reviewA, reviewB);
 		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCatA));
-		when(gameReviewRepo.findByGameCategoryContains(gameCatA)).thenReturn(allReviewsWithCategory);
+		when(gameReviewRepo.findByGameCategory(gameCatA)).thenReturn(allReviewsWithCategory);
 		
 		underTest.findOneGameCategory(arbitraryId, model);
 		verify(model).addAttribute("gameReviews", allReviewsWithCategory);

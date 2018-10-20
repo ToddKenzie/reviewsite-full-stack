@@ -35,7 +35,7 @@ public class GameReview extends PlayedObject{
 		return gameExpansion;
 	}
 	
-	public GameCategory getCategory() {
+	public GameCategory getGameCategory() {
 		return gameCategory;
 	}
 	

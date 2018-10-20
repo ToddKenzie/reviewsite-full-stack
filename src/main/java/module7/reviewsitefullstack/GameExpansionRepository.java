@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface GameExpansionRepository extends CrudRepository<GameExpansion, Long> {
 
-	GameExpansion findByGameReviewContains(GameReview gameReview);
+	GameExpansion findByGameReview(GameReview gameReview);
 	
 	Collection<GameExpansion> findByTagsContains(Tag tag);
 

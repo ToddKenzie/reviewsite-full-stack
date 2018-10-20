@@ -32,7 +32,7 @@ public class GameReviewController {
 			model.addAttribute("gameReview", gameReview.get());
 			model.addAttribute("gameCategory", gameCategoryRepo.findByGameReviewsContains(gameReview.get()));
 			model.addAttribute("tags", tagRepo.findByGameReviewsContains(gameReview.get()));
-//			model.addAttribute("gameExpansion", gameExpansionRepo.findByGameReviewContains(gameReview.get()));
+			model.addAttribute("gameExpansion", gameExpansionRepo.findByGameReview(gameReview.get()));
 			return "singleGameReviewTemplate";
 		}
 		throw new NoGameReviewFoundException();
@@ -51,7 +51,7 @@ public class GameReviewController {
 		
 		if(gameCategory.isPresent()) {
 			model.addAttribute("gameCategory", gameCategory.get());
-			model.addAttribute("gameReviews", gameReviewRepo.findByGameCategoryContains(gameCategory.get()));
+			model.addAttribute("gameReviews", gameReviewRepo.findByGameCategory(gameCategory.get()));
 			return "singleGameCategoryTemplate";
 		}
 		throw new NoGameCategoryException();
