@@ -104,7 +104,7 @@ public class GameReviewControllerMockMvcTest {
 	@Test
 	public void shouldAddAllGameReviewsToModel() throws Exception {
 		Collection<GameReview> allReviews = Arrays.asList(gameReview, secondReview);
-		when(gameReviewRepo.findAll()).thenReturn(allReviews);
+		when(gameReviewRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
 		mvc.perform(get("/allGameReviews")).andExpect(model().attribute("gameReviews", allReviews));
 	}
 	
@@ -171,7 +171,7 @@ public class GameReviewControllerMockMvcTest {
 	@Test
 	public void shouldAddAllTagsIntoModel() throws Exception {
 		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
-		when(tagRepo.findAll()).thenReturn(allTags);
+		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
 		mvc.perform(get("/allTags")).andExpect(model().attribute("tags", allTags));
 	}
 	
