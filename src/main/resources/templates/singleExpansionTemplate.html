@@ -16,9 +16,9 @@
 		
 		<main>
 			<section class="column-1">
-				<ul>
-					<li><span th:text="${gameExpansion.rangeOfPlayers}"></span></li>
-					<li><span th:text="${gameExpansion.timeToComplete}"></span></li>
+				<ul class="info">
+					<li><i class="fas fa-users"></i> : <span th:text="${gameExpansion.rangeOfPlayers}"></span></li>
+					<li><i class="fas fa-stopwatch"></i> : <span th:text="${gameExpansion.timeToComplete}"></span></li>
 				</ul>
 				<a th:href="@{${gameExpansion.weblink}}">External Link to Expansion</a>
 				<p th:text="${gameExpansion.synopsis}"></p>

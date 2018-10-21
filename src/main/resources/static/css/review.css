@@ -38,6 +38,11 @@ main {
 	padding-right: 10px;
 }
 
+.info {
+	list-style: none;
+	padding-left: 0;
+}
+
 .column-2 {
 	text-align: center;
 }

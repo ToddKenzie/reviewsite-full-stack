@@ -11,16 +11,16 @@
 	<div class="main-container">
 		<header>
 			<h1 th:text="${gameReview.name}"></h1>
-			<p>Game Category: <a th:href="@{/game-category(id=${gameCategory.id})}" th:text="${gameCategory.name}"></a></p>
+			<h2>Game Category: <a th:href="@{/game-category(id=${gameCategory.id})}" th:text="${gameCategory.name}"></a></h2>
 			<h3 th:text="${gameReview.synopsis}"></h3>
 			<hr>
 		</header>
 		
 		<main>
 			<section class="column-1">
-				<ul>
-					<li><span th:text="${gameReview.rangeOfPlayers}"></span></li>
-					<li><span th:text="${gameReview.timeToComplete}"></span></li>
+				<ul class="info">
+					<li><i class="fas fa-users"></i> : <span th:text="${gameReview.rangeOfPlayers}"></span></li>
+					<li><i class="fas fa-stopwatch"></i> : <span th:text="${gameReview.timeToComplete}"></span></li>
 				</ul>
 				<a id="game-link" th:href="@{${gameReview.weblink}}">External Link to Game</a>
 				<span th:if="${gameExpansion}">Expansion Link: <a th:href="@{/expansion(id=${gameExpansion.id})}" th:text="${gameExpansion.name}"></a></span>
