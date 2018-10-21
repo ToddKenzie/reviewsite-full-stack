@@ -15,7 +15,7 @@
 
 		<main>
 			<section class="lists">
-				<article>
+				<article class="column-1">
 					<h3>Here's a list of reviews fit to peruse</h3>
 
 					<ul>
@@ -23,7 +23,7 @@
 					</ul>
 				</article>
 
-				<article>
+				<article class="column-2">
 					<h3>Here are categories so you can find what kind of games may tickle your mind</h3>
 
 					<ul>
@@ -37,8 +37,11 @@
 		</main>
 
 		<nav>
-			<a th:href="@{/allGameCategories}">To All Categories</a>
-			<a th:href="@{/allTags}">To All Tags</a>
+			<p>BoardGame HotSite</p>
+			<div id="nav-links">
+				<a th:href="@{/allGameCategories}">All Categories</a>
+				<a th:href="@{/allTags}">All Tags</a>
+			</div>
 		</nav>
 
 		<footer>
