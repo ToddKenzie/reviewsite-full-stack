@@ -38,6 +38,10 @@ main {
 	padding-right: 10px;
 }
 
+.column-1 ul li {
+	padding: .25em 0;
+}
+
 .info {
 	list-style: none;
 	padding-left: 0;
