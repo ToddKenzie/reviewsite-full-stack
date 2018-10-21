@@ -13,11 +13,15 @@
 		</header>
 		
 		<main>
-			<h2>Games</h2>
-			<ul>
-				<li th:each="review : ${gameReviews}"><a th:href="@{/game-review(id=${review.id})}" th:text="${review.name}"></a></li>
-			</ul>
-
+			<section class="column-1">
+				<h2>Games</h2>
+				<ul>
+					<li th:each="review : ${gameReviews}"><a th:href="@{/game-review(id=${review.id})}" th:text="${review.name}"></a></li>
+				</ul>
+			</section>
+			<section class="column-2">
+				<img th:src="@{'./images/' + ${gameCategory.name} + '.jpg'}">
+			</section>
 		</main>
 
 
