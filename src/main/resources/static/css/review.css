@@ -1,5 +1,6 @@
 body {
 	font-family: Raleway, Calibri, sans-serif;
+	margin-top: 4em;
     margin-left: 10%;
     margin-right: 10%;
     background-color: #eac9ff;
@@ -35,6 +36,15 @@ main {
 
 .column-1 {
 	padding-right: 10px;
+}
+
+.column-2 {
+	text-align: center;
+}
+
+.column-2 img {
+	max-width: 600px;
+	max-height: 600px;
 }
 
 #game-link {
@@ -79,13 +89,39 @@ button {
     margin-top: 30px;
 }
 
-.game-image {
-	display: block;
-	width: 50%;
-	min-width: 250px;
-	max-width: 400px;
-	margin-left: auto;
-	margin-right: auto;
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+
+	background-image: url("../images/nav.png");
+	background-color: #7606f7;
+	
 }
+
+nav p,
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+nav p {
+	padding-left: 2em;
+}
+
+nav #nav-links {
+	justify-content: flex-end;
+	padding: 1em 2em;
+}
+
+nav a {
+	padding: 1em;
+}
+
 
 
