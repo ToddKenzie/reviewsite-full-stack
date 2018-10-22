@@ -131,32 +131,32 @@ public class GameReviewControllerTest {
 		verify(model).addAttribute("gameCategories", allCategories);
 	}
 	
-	@Test
-	public void addSingleTagToModel() throws Exception {
-		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
-		
-		underTest.findOneTag(arbitraryId, model);
-		verify(model).addAttribute("tag", tagA);
-	}
-	
-	@Test
-	public void checkForGameReviewsWithSingleTagModel() throws Exception {
-		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
-		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
-		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
-		
-		underTest.findOneTag(arbitraryId, model);
-		verify(model).addAttribute("gameReviews", reviewsWithTag);
-	}
-	
-	@Test
-	public void addAllTagsToModel() throws Exception {
-		Collection<Tag> allTags = Arrays.asList(tagA, tagB);
-		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
-		
-		underTest.findAllTags(model);
-		verify(model).addAttribute("tags", allTags);
-	}
+//	@Test
+//	public void addSingleTagToModel() throws Exception {
+//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
+//		
+//		underTest.findOneTag(arbitraryId, model);
+//		verify(model).addAttribute("tag", tagA);
+//	}
+//	
+//	@Test
+//	public void checkForGameReviewsWithSingleTagModel() throws Exception {
+//		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
+//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
+//		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
+//		
+//		underTest.findOneTag(arbitraryId, model);
+//		verify(model).addAttribute("gameReviews", reviewsWithTag);
+//	}
+//	
+//	@Test
+//	public void addAllTagsToModel() throws Exception {
+//		Collection<Tag> allTags = Arrays.asList(tagA, tagB);
+//		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
+//		
+//		underTest.findAllTags(model);
+//		verify(model).addAttribute("tags", allTags);
+//	}
 	
 	@Test
 	public void addSingleExpansionToModel() throws Exception {

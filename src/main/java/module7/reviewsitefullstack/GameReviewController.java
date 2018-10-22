@@ -65,25 +65,25 @@ public class GameReviewController {
 		return "gameCategoriesTemplate";
 	}
 
-	@RequestMapping("/tag")
-	public String findOneTag(@RequestParam(value="id")long id, Model model) throws NoTagFoundException {
-		Optional<Tag> tag = tagRepo.findById(id);
-		
-		if(tag.isPresent()) {
-			model.addAttribute("tag", tag.get());
-			model.addAttribute("gameReviews", gameReviewRepo.findByTagsContains(tag.get()));
-			model.addAttribute("gameExpansions", gameExpansionRepo.findByTagsContains(tag.get()));
-			return "singleTagTemplate";
-		}
-		throw new NoTagFoundException();
-		
-	}
-
-	@RequestMapping("/allTags")
-	public String findAllTags(Model model) {
-		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
-		return "allTagsTemplate";
-	}
+//	@RequestMapping("/tag")
+//	public String findOneTag(@RequestParam(value="id")long id, Model model) throws NoTagFoundException {
+//		Optional<Tag> tag = tagRepo.findById(id);
+//		
+//		if(tag.isPresent()) {
+//			model.addAttribute("tag", tag.get());
+//			model.addAttribute("gameReviews", gameReviewRepo.findByTagsContains(tag.get()));
+//			model.addAttribute("gameExpansions", gameExpansionRepo.findByTagsContains(tag.get()));
+//			return "singleTagTemplate";
+//		}
+//		throw new NoTagFoundException();
+//		
+//	}
+//
+//	@RequestMapping("/allTags")
+//	public String findAllTags(Model model) {
+//		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
+//		return "allTagsTemplate";
+//	}
 
 	
 	@RequestMapping("/expansion")

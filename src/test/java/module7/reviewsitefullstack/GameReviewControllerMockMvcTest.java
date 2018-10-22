@@ -142,31 +142,31 @@ public class GameReviewControllerMockMvcTest {
 		mvc.perform(get("/allGameCategories")).andExpect(model().attribute("gameCategories", allCategories));
 	}
 
-	@Test
-	public void shouldBeOkAndRouteToSingleTagSite() throws Exception {
-		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tag));
-		mvc.perform(get("/tag?id=1")).andExpect(status().isOk());
-		mvc.perform(get("/tag?id=1")).andExpect(view().name(is("singleTagTemplate")));
-	}
-	
-	@Test
-	public void shouldNotBeOkForSingleTagSiteWithInvalidId() throws Exception {
-		mvc.perform(get("/tag?id=0")).andExpect(status().isNotFound());
-	}
-	
-	@Test
-	public void shouldAddSingleTagIntoModel() throws Exception {
-		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tag));
-		mvc.perform(get("/tag?id=1")).andExpect(model().attribute("tag", tag));
-	}
-
-	@Test
-	public void shouldBeOkAndRouteToAllTagSite() throws Exception {
-		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
-		when(tagRepo.findAll()).thenReturn(allTags);
-		mvc.perform(get("/allTags")).andExpect(status().isOk());
-		mvc.perform(get("/allTags")).andExpect(view().name(is("allTagsTemplate")));
-	}
+//	@Test
+//	public void shouldBeOkAndRouteToSingleTagSite() throws Exception {
+//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tag));
+//		mvc.perform(get("/tag?id=1")).andExpect(status().isOk());
+//		mvc.perform(get("/tag?id=1")).andExpect(view().name(is("singleTagTemplate")));
+//	}
+//	
+//	@Test
+//	public void shouldNotBeOkForSingleTagSiteWithInvalidId() throws Exception {
+//		mvc.perform(get("/tag?id=0")).andExpect(status().isNotFound());
+//	}
+//	
+//	@Test
+//	public void shouldAddSingleTagIntoModel() throws Exception {
+//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tag));
+//		mvc.perform(get("/tag?id=1")).andExpect(model().attribute("tag", tag));
+//	}
+//
+//	@Test
+//	public void shouldBeOkAndRouteToAllTagSite() throws Exception {
+//		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
+//		when(tagRepo.findAll()).thenReturn(allTags);
+//		mvc.perform(get("/allTags")).andExpect(status().isOk());
+//		mvc.perform(get("/allTags")).andExpect(view().name(is("allTagsTemplate")));
+//	}
 	
 	@Test
 	public void shouldAddAllTagsIntoModel() throws Exception {
