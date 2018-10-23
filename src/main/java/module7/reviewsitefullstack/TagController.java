@@ -25,7 +25,7 @@ public class TagController {
 	@Resource
 	private GameExpansionRepository gameExpansionRepo;
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id:[\\d]+}")
 	public String findOneTag(@PathVariable Long id, Model model) throws NoTagFoundException {
 		Optional<Tag> tag = tagRepo.findById(id);
 		

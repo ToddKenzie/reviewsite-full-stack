@@ -15,11 +15,11 @@
 		<main>
 			<section class="column-1">
 				<ul>
-					<li th:each="tag : ${tags}"><a th:href="@{/tags/${tag.id}}" th:text="${tag.name}"></a></li>
+					<li th:each="tag : ${tags}"><a th:href="@{'/tags/' + ${tag.id}}" th:text="${tag.name}"></a></li>
 				</ul>
 			</section>
 			<section class="column-2">
-				<img th:src="@{./images/tags.jpg}">
+				<img th:src="@{/images/tags.jpg}">
 			</section>
 		</main>
 
