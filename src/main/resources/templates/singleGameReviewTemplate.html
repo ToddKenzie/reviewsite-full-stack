@@ -29,7 +29,7 @@
 			</section>
 			
 			<section class="column-2">
-				<img th:src="@{'./images/' + ${gameReview.pictureLink}}" />
+				<img th:src="@{'/images/' + ${gameReview.pictureLink}}" />
 			</section>				
 		</main>
 
@@ -44,7 +44,7 @@
 			<div id="nav-links">
 				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/tags/all}">All Tags</a>
-				<a th:href="@{/allGameReviews}">Main Page</a>
+				<a th:href="@{/gameReview/all}">Main Page</a>
 			</div>
 		</nav>
 
