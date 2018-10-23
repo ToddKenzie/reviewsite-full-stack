@@ -32,7 +32,7 @@
 
 		<div id="tags">
 			<p class="buttons" th:each="tag : ${gameExpansion.tags}"> 
-				<a th:href="@{'/tags/' + ${tag.id}}"><button  th:text="${tag.name}"></button></a>
+				<a th:href="@{|/tags/${tag.id}|}"><button  th:text="${tag.name}"></button></a>
 			</p>
 		</div>
 
@@ -41,7 +41,7 @@
 			<p>BoardGame HotSite</p>
 			<div id="nav-links">
 				<a th:href="@{/game-review(id=${gameReview.id})}">Back to <span th:text="${gameReview.name}">The Game</span></a>
-				<a th:href="@{/allGameCategories}">All Categories</a>
+				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/tags/all}">All Tags</a>
 				<a th:href="@{/allGameReviews}">Main Page</a>
 			</div>

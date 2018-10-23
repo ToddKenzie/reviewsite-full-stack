@@ -20,7 +20,7 @@
 				</ul>
 			</section>
 			<section class="column-2">
-				<img th:src="@{'./images/' + ${gameCategory.name} + '.jpg'}">
+				<img th:src="@{'/images/' + ${gameCategory.name} + '.jpg'}">
 			</section>
 		</main>
 
@@ -29,7 +29,7 @@
 		<nav>
 			<p>BoardGame HotSite</p>
 			<div id="nav-links">
-				<a th:href="@{/allGameCategories}">All Categories</a>
+				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/tags/all}">All Tags</a>
 				<a th:href="@{/allGameReviews}">Main Page</a>
 			</div>

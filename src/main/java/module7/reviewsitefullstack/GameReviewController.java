@@ -47,44 +47,23 @@ public class GameReviewController {
 		return "gameReviewsTemplate";
 	}
 
-	@RequestMapping("/game-category")
-	public String findOneGameCategory(@RequestParam(value="id")long id, Model model) throws NoGameCategoryException {
-		Optional<GameCategory> gameCategory = gameCategoryRepo.findById(id);
-		
-		if(gameCategory.isPresent()) {
-			model.addAttribute("gameCategory", gameCategory.get());
-			model.addAttribute("gameReviews", gameReviewRepo.findByGameCategory(gameCategory.get()));
-			return "singleGameCategoryTemplate";
-		}
-		throw new NoGameCategoryException();
-	}
-
-	@RequestMapping("/allGameCategories")
-	public String findAllGameCategories(Model model) {
-		model.addAttribute("gameCategories", gameCategoryRepo.findAll());
-		return "gameCategoriesTemplate";
-	}
-
-//	@RequestMapping("/tag")
-//	public String findOneTag(@RequestParam(value="id")long id, Model model) throws NoTagFoundException {
-//		Optional<Tag> tag = tagRepo.findById(id);
+//	@RequestMapping("/game-category")
+//	public String findOneGameCategory(@RequestParam(value="id")long id, Model model) throws NoGameCategoryException {
+//		Optional<GameCategory> gameCategory = gameCategoryRepo.findById(id);
 //		
-//		if(tag.isPresent()) {
-//			model.addAttribute("tag", tag.get());
-//			model.addAttribute("gameReviews", gameReviewRepo.findByTagsContains(tag.get()));
-//			model.addAttribute("gameExpansions", gameExpansionRepo.findByTagsContains(tag.get()));
-//			return "singleTagTemplate";
+//		if(gameCategory.isPresent()) {
+//			model.addAttribute("gameCategory", gameCategory.get());
+//			model.addAttribute("gameReviews", gameReviewRepo.findByGameCategory(gameCategory.get()));
+//			return "singleGameCategoryTemplate";
 //		}
-//		throw new NoTagFoundException();
-//		
+//		throw new NoGameCategoryException();
 //	}
 //
-//	@RequestMapping("/allTags")
-//	public String findAllTags(Model model) {
-//		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
-//		return "allTagsTemplate";
+//	@RequestMapping("/allGameCategories")
+//	public String findAllGameCategories(Model model) {
+//		model.addAttribute("gameCategories", gameCategoryRepo.findAll());
+//		return "gameCategoriesTemplate";
 //	}
-
 	
 	@RequestMapping("/expansion")
 	public String findOneExpansion(@RequestParam(value="id")long id, Model model) throws NoExpansionFoundException {

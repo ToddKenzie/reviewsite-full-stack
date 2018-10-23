@@ -15,7 +15,7 @@
 		<main>
 			<section class="column-1">
 				<ul>
-					<li th:each="tag : ${tags}"><a th:href="@{'/tags/' + ${tag.id}}" th:text="${tag.name}"></a></li>
+					<li th:each="tag : ${tags}"><a th:href="@{|/tags/${tag.id}|}" th:text="${tag.name}"></a></li>
 				</ul>
 			</section>
 			<section class="column-2">
@@ -26,7 +26,7 @@
 		<nav>
 			<p>BoardGame HotSite</p>
 			<div id="nav-links">
-				<a th:href="@{/allGameCategories}">All Categories</a>
+				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/allGameReviews}">Main Page</a>
 			</div>
 		</nav>

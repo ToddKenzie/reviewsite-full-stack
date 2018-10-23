@@ -66,7 +66,6 @@ public class GameReviewControllerMockMvcTest {
 	@Mock
 	private GameExpansion secondXp;
 	
-	
 	long arbitraryId = 1;
 	
 	@Test
@@ -107,74 +106,7 @@ public class GameReviewControllerMockMvcTest {
 		when(gameReviewRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
 		mvc.perform(get("/allGameReviews")).andExpect(model().attribute("gameReviews", allReviews));
 	}
-	
-	@Test
-	public void shouldBeOkAndRouteToSingleGameCategorySite() throws Exception {
-		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCat));
-		mvc.perform(get("/game-category?id=1")).andExpect(status().isOk());
-		mvc.perform(get("/game-category?id=1")).andExpect(view().name(is("singleGameCategoryTemplate")));
-	}
-	
-	@Test
-	public void shouldNotBeOkForSingleGameCategorySiteWithInvalidId() throws Exception {
-		mvc.perform(get("/game-category?id=0")).andExpect(status().isNotFound());
-	}
-	
-	@Test
-	public void shouldAddSingleCategoryIntoModel() throws Exception {
-		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCat));
-		mvc.perform(get("/game-category?id=1")).andExpect(model().attribute("gameCategory", gameCat));
-	}
-	
-	
-	@Test
-	public void shouldBeOkAndRouteToAllGameCategoriesSite() throws Exception {
-		Collection<GameCategory> allCategories = Arrays.asList(gameCat, secondCat);
-		when(gameCategoryRepo.findAll()).thenReturn(allCategories);
-		mvc.perform(get("/allGameCategories")).andExpect(status().isOk());
-		mvc.perform(get("/allGameCategories")).andExpect(view().name(is("gameCategoriesTemplate")));
-	}
-
-	@Test
-	public void shouldAddAllCategoriesIntoModel() throws Exception {
-		Collection<GameCategory> allCategories = Arrays.asList(gameCat, secondCat);
-		when(gameCategoryRepo.findAll()).thenReturn(allCategories);
-		mvc.perform(get("/allGameCategories")).andExpect(model().attribute("gameCategories", allCategories));
-	}
-
-//	@Test
-//	public void shouldBeOkAndRouteToSingleTagSite() throws Exception {
-//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tag));
-//		mvc.perform(get("/tag?id=1")).andExpect(status().isOk());
-//		mvc.perform(get("/tag?id=1")).andExpect(view().name(is("singleTagTemplate")));
-//	}
-//	
-//	@Test
-//	public void shouldNotBeOkForSingleTagSiteWithInvalidId() throws Exception {
-//		mvc.perform(get("/tag?id=0")).andExpect(status().isNotFound());
-//	}
-//	
-//	@Test
-//	public void shouldAddSingleTagIntoModel() throws Exception {
-//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tag));
-//		mvc.perform(get("/tag?id=1")).andExpect(model().attribute("tag", tag));
-//	}
-//
-//	@Test
-//	public void shouldBeOkAndRouteToAllTagSite() throws Exception {
-//		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
-//		when(tagRepo.findAll()).thenReturn(allTags);
-//		mvc.perform(get("/allTags")).andExpect(status().isOk());
-//		mvc.perform(get("/allTags")).andExpect(view().name(is("allTagsTemplate")));
-//	}
-	
-	@Test
-	public void shouldAddAllTagsIntoModel() throws Exception {
-		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
-		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
-		mvc.perform(get("/allTags")).andExpect(model().attribute("tags", allTags));
-	}
-	
+		
 	@Test
 	public void shouldBeOkAndRouteToSingleExpansionSite() throws Exception {
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));

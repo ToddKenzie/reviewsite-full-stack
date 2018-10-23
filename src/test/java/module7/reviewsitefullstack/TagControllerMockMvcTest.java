@@ -76,5 +76,12 @@ public class TagControllerMockMvcTest {
 		mvc.perform(get("/tags/all")).andExpect(status().isOk());
 		mvc.perform(get("/tags/all")).andExpect(view().name(is("allTagsTemplate")));
 	}
+	
+	@Test
+	public void shouldAddAllTagsIntoModel() throws Exception {
+		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
+		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
+		mvc.perform(get("/tags/all")).andExpect(model().attribute("tags", allTags));
+	}
 
 }

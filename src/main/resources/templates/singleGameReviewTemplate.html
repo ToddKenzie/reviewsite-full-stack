@@ -11,7 +11,7 @@
 	<div class="main-container">
 		<header>
 			<h1 th:text="${gameReview.name}"></h1>
-			<h2>Game Category: <a th:href="@{/game-category(id=${gameCategory.id})}" th:text="${gameCategory.name}"></a></h2>
+			<h2>Game Category: <a th:href="@{|/gameCategory/${gameCategory.id}|}" th:text="${gameCategory.name}"></a></h2>
 			<h3 th:text="${gameReview.synopsis}"></h3>
 			<hr>
 		</header>
@@ -35,14 +35,14 @@
 
 		<div id="tags">
 			<p class="buttons" th:each="tag : ${gameReview.tags}"> 
-				<a th:href="@{'/tags/' + ${tag.id}}"><button  th:text="${tag.name}"></button></a>
+				<a th:href="@{|/tags/${tag.id}|}"><button  th:text="${tag.name}"></button></a>
 			</p>
 		</div>
 		
 		<nav>
 			<p>BoardGame HotSite</p>
 			<div id="nav-links">
-				<a th:href="@{/allGameCategories}">All Categories</a>
+				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/tags/all}">All Tags</a>
 				<a th:href="@{/allGameReviews}">Main Page</a>
 			</div>

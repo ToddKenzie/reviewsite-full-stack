@@ -27,7 +27,7 @@
 					<h3>Here are categories so you can find what kind of games may tickle your mind</h3>
 
 					<ul>
-						<li th:each="category : ${gameCategories}"><a th:href="@{/game-category(id=${category.id})}" th:text="${category.name}"></a></li>
+						<li th:each="category : ${gameCategories}"><a th:href="@{|/gameCategory/${category.id}|}" th:text="${category.name}"></a></li>
 					</ul>
 				</article>
 			</section>
@@ -39,7 +39,7 @@
 		<nav>
 			<p>BoardGame HotSite</p>
 			<div id="nav-links">
-				<a th:href="@{/allGameCategories}">All Categories</a>
+				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/tags/all}">All Tags</a>
 			</div>
 		</nav>

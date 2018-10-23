@@ -102,62 +102,7 @@ public class GameReviewControllerTest {
 		underTest.findAllGameReviews(model);
 		verify(model).addAttribute("gameReviews", allReviews);
 	}
-	
-	@Test
-	public void addSingleCategoryToModel() throws Exception {
-		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCatA));
 		
-		underTest.findOneGameCategory(arbitraryId, model);
-		verify(model).addAttribute("gameCategory", gameCatA);
-	}
-	
-	@Test
-	public void findAllGameReviewsWithCategoryInModel() throws Exception {
-		Collection<GameReview> allReviewsWithCategory = Arrays.asList(reviewA, reviewB);
-		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCatA));
-		when(gameReviewRepo.findByGameCategory(gameCatA)).thenReturn(allReviewsWithCategory);
-		
-		underTest.findOneGameCategory(arbitraryId, model);
-		verify(model).addAttribute("gameReviews", allReviewsWithCategory);
-
-	}
-	
-	@Test
-	public void addAllGameCategoriesToModel() throws Exception {
-		Collection<GameCategory> allCategories = Arrays.asList(gameCatA, gameCatB);
-		when(gameCategoryRepo.findAll()).thenReturn(allCategories);
-		
-		underTest.findAllGameCategories(model);
-		verify(model).addAttribute("gameCategories", allCategories);
-	}
-	
-//	@Test
-//	public void addSingleTagToModel() throws Exception {
-//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
-//		
-//		underTest.findOneTag(arbitraryId, model);
-//		verify(model).addAttribute("tag", tagA);
-//	}
-//	
-//	@Test
-//	public void checkForGameReviewsWithSingleTagModel() throws Exception {
-//		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
-//		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
-//		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
-//		
-//		underTest.findOneTag(arbitraryId, model);
-//		verify(model).addAttribute("gameReviews", reviewsWithTag);
-//	}
-//	
-//	@Test
-//	public void addAllTagsToModel() throws Exception {
-//		Collection<Tag> allTags = Arrays.asList(tagA, tagB);
-//		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
-//		
-//		underTest.findAllTags(model);
-//		verify(model).addAttribute("tags", allTags);
-//	}
-	
 	@Test
 	public void addSingleExpansionToModel() throws Exception {
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp1));

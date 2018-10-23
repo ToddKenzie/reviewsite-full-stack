@@ -15,12 +15,12 @@
 		<main>
 			<section class="column-1">
 				<ul>
-					<li th:each="category : ${gameCategories}"><a th:href="@{/game-category(id=${category.id})}" th:text="${category.name}"></a></li>
+					<li th:each="category : ${gameCategories}"><a th:href="@{|/gameCategory/${category.id}|}" th:text="${category.name}"></a></li>
 				</ul>
 			</section>
 
 			<section class="column-2">
-				<img th:src="@{./images/categories.jpg}">
+				<img th:src="@{/images/categories.jpg}">
 			</section>
 		</main>
 	
