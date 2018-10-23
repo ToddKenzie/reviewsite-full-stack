@@ -83,5 +83,10 @@ public class TagControllerMockMvcTest {
 		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
 		mvc.perform(get("/tags/all")).andExpect(model().attribute("tags", allTags));
 	}
+	
+	@Test
+	public void shouldAddOneTagToRepoViaModel() throws Exception {
+		
+	}
 
 }

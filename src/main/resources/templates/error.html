@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <Title>...ERROR...</Title>
+        <link href="https://fonts.googleapis.com/css?family=Rajdhani:600,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/error.css}">
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="bigscreen">
+                <h1>Whoops.  It seems like you lost.</h1>
+                <h2>Wait... I mean you seem lost...</h2>
+                <h3 th:text="${status + ' ' + error}"></h3>
+                <a th:href="@{/gameReview/all}"><button>Return to Main Page</button></a>
+            </div>
+        </div>
+    </body>
+</html>
