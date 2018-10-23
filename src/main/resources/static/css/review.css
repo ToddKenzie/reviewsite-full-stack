@@ -82,12 +82,18 @@ button {
     display: inline-block;
     font-size: 12px;
     margin: 5px 0;
+	transition: all 0.2s ease-in;
 }
 
 .buttons {
 	display: inline-block; 
 	padding-inline-start: 5px;
 	margin: 5px 0;
+}
+
+button:hover {
+	background-color: #13328a;
+	transform: translateY(-4px);
 }
 
 .co {

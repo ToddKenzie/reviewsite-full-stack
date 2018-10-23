@@ -107,40 +107,40 @@ public class GameReviewControllerMockMvcTest {
 		mvc.perform(get("/allGameReviews")).andExpect(model().attribute("gameReviews", allReviews));
 	}
 		
-	@Test
-	public void shouldBeOkAndRouteToSingleExpansionSite() throws Exception {
-		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
-		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
-		mvc.perform(get("/expansion?id=1")).andExpect(status().isOk());
-		mvc.perform(get("/expansion?id=1")).andExpect(view().name(is("singleExpansionTemplate")));
-	}
-	
-	@Test
-	public void shouldNotBeOkForSingleExpansionSiteWithInvalidId() throws Exception {
-		mvc.perform(get("/expansion?id=0")).andExpect(status().isNotFound());
-	}
-	
-	@Test
-	public void shouldAddSingleExpansionIntoModel() throws Exception {
-		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
-		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
-		mvc.perform(get("/expansion?id=1")).andExpect(model().attribute("gameExpansion", gameXp));
-		
-	}
-	
-	@Test
-	public void shouldBeOkAndRouteToAllExpansionsSite() throws Exception {
-		Collection<GameExpansion> allExpansions = Arrays.asList(gameXp, secondXp);
-		when(gameExpansionRepo.findAll()).thenReturn(allExpansions);
-		mvc.perform(get("/allExpansions")).andExpect(status().isOk());
-		mvc.perform(get("/allExpansions")).andExpect(view().name(is("allExpansionsTemplate")));
-	}
-
-	@Test
-	public void shouldAddAllExpansionsIntoModel() throws Exception {
-		Collection<GameExpansion> allExpansions = Arrays.asList(gameXp, secondXp);
-		when(gameExpansionRepo.findAll()).thenReturn(allExpansions);
-		mvc.perform(get("/allExpansions")).andExpect(model().attribute("gameExpansions", allExpansions));
-	}
+//	@Test
+//	public void shouldBeOkAndRouteToSingleExpansionSite() throws Exception {
+//		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
+//		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
+//		mvc.perform(get("/expansion?id=1")).andExpect(status().isOk());
+//		mvc.perform(get("/expansion?id=1")).andExpect(view().name(is("singleExpansionTemplate")));
+//	}
+//	
+//	@Test
+//	public void shouldNotBeOkForSingleExpansionSiteWithInvalidId() throws Exception {
+//		mvc.perform(get("/expansion?id=0")).andExpect(status().isNotFound());
+//	}
+//	
+//	@Test
+//	public void shouldAddSingleExpansionIntoModel() throws Exception {
+//		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
+//		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
+//		mvc.perform(get("/expansion?id=1")).andExpect(model().attribute("gameExpansion", gameXp));
+//		
+//	}
+//	
+//	@Test
+//	public void shouldBeOkAndRouteToAllExpansionsSite() throws Exception {
+//		Collection<GameExpansion> allExpansions = Arrays.asList(gameXp, secondXp);
+//		when(gameExpansionRepo.findAll()).thenReturn(allExpansions);
+//		mvc.perform(get("/allExpansions")).andExpect(status().isOk());
+//		mvc.perform(get("/allExpansions")).andExpect(view().name(is("allExpansionsTemplate")));
+//	}
+//
+//	@Test
+//	public void shouldAddAllExpansionsIntoModel() throws Exception {
+//		Collection<GameExpansion> allExpansions = Arrays.asList(gameXp, secondXp);
+//		when(gameExpansionRepo.findAll()).thenReturn(allExpansions);
+//		mvc.perform(get("/allExpansions")).andExpect(model().attribute("gameExpansions", allExpansions));
+//	}
 	
 }

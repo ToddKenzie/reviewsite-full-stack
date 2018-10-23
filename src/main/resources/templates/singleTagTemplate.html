@@ -23,7 +23,7 @@
 			<section column="column-2">
 				<h3>Game Expansions with this Tag</h3>
 				<ul th:each="expansion : ${tag.gameExpansions}">
-					<li><a th:href="@{/expansion(id=${expansion.id})}" th:text="${expansion.name}"></a></li>
+					<li><a th:href="@{|/gameExpansion/${expansion.id}|}" th:text="${expansion.name}"></a></li>
 				</ul>
 			</section>
 		</main>

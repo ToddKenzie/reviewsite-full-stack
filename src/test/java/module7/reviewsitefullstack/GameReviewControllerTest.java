@@ -79,8 +79,7 @@ public class GameReviewControllerTest {
 		when(gameCategoryRepo.findByGameReviewsContains(reviewA)).thenReturn(gameCatA);
 		
 		underTest.findOneGameReview(arbitraryId, model);
-		verify(model).addAttribute("gameCategory", gameCatA);
-		
+		verify(model).addAttribute("gameCategory", gameCatA);		
 	}
 	
 	@Test
@@ -90,8 +89,7 @@ public class GameReviewControllerTest {
 		when(tagRepo.findByGameReviewsContains(reviewA)).thenReturn(allTagsForReview);
 		
 		underTest.findOneGameReview(arbitraryId, model);
-		verify(model).addAttribute("tags", allTagsForReview);
-		
+		verify(model).addAttribute("tags", allTagsForReview);	
 	}
 	
 	@Test
@@ -103,31 +101,4 @@ public class GameReviewControllerTest {
 		verify(model).addAttribute("gameReviews", allReviews);
 	}
 		
-	@Test
-	public void addSingleExpansionToModel() throws Exception {
-		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp1));
-		
-		underTest.findOneExpansion(arbitraryId, model);
-		verify(model).addAttribute("gameExpansion", gameXp1);
-	}
-	
-	@Test
-	public void findAllTagsForSingleExpansionToModel() throws Exception {
-		Collection<Tag> allTagsForXp = Arrays.asList(tagA, tagB);
-		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp1));
-		when(tagRepo.findByGameExpansionsContains(gameXp1)).thenReturn(allTagsForXp);
-		
-		underTest.findOneExpansion(arbitraryId, model);
-		verify(model).addAttribute("tags", allTagsForXp);
-	}
-	
-	@Test
-	public void addAllExpansionsToModel() throws Exception {
-		Collection<GameExpansion> allExpansions = Arrays.asList(gameXp1, gameXp2);
-		when(gameExpansionRepo.findAll()).thenReturn(allExpansions);
-		
-		underTest.findAllExpansions(model);
-		verify(model).addAttribute("gameExpansions", allExpansions);
-	}
-
 }
