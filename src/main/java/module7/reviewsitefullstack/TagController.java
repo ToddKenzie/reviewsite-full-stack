@@ -44,5 +44,12 @@ public class TagController {
 		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
 		return "allTagsTemplate";
 	}
+	
+	@GetMapping("/add")
+	public String findAllTagsForAddPage(Model model) {
+		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
+		return "addTagsTemplate";
+	}
+	
 
 }

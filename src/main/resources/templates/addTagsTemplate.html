@@ -17,15 +17,14 @@
 				<ul>
 					<li th:each="tag : ${tags}"><a th:href="@{|/tags/${tag.id}|}" th:text="${tag.name}"></a></li>
 				</ul>
-
-				
-				<p>Would you like to add a tag?<br/></p>
-				<a th:href="@{/tags/add}"><button>Go To Add Tag</button></a>
-
-
 			</section>
 			<section class="column-2">
-				<img th:src="@{/images/tags.jpg}">
+                <form method="POST">
+                    <p>Enter the new tag<br/></p>
+                    <input type="text" name="newTagName"><br/><br/>
+                    <input type="submit" value="Submit">
+                </form>
+				
 			</section>
 		</main>
 

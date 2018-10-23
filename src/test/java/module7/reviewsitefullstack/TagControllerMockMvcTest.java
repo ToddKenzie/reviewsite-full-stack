@@ -85,6 +85,22 @@ public class TagControllerMockMvcTest {
 	}
 	
 	@Test
+	public void shouldBeOkAndRouteToAddSite() throws Exception {
+		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
+		when(tagRepo.findAll()).thenReturn(allTags);
+		mvc.perform(get("/tags/add")).andExpect(status().isOk());
+		mvc.perform(get("/tags/add")).andExpect(view().name(is("addTagsTemplate")));
+	}
+	
+	@Test
+	public void shouldAddAllTagsIntoAddSiteModel() throws Exception {
+		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
+		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
+		mvc.perform(get("/tags/add")).andExpect(model().attribute("tags", allTags));
+	}
+	
+	
+	@Test
 	public void shouldAddOneTagToRepoViaModel() throws Exception {
 		
 	}
