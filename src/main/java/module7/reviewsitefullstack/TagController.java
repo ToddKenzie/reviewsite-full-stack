@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @CrossOrigin
@@ -49,6 +50,18 @@ public class TagController {
 	public String findAllTagsForAddPage(Model model) {
 		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
 		return "addTagsTemplate";
+	}
+
+	@RequestMapping("/added")
+	public String addTag(String tagName) {
+		Tag newTag = tagRepo.findByNameIgnoreCase(tagName);
+		
+		if(newTag==null) {
+			String formattedTagName = tagName.substring(0, 1).toUpperCase() + tagName.substring(1).toLowerCase();
+			newTag = new Tag(formattedTagName);
+			tagRepo.save(newTag);
+		}
+		return "redirect:/tags/add";
 	}
 	
 

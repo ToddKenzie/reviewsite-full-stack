@@ -12,4 +12,6 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 
 	Collection<Tag> findByGameExpansionsContains(GameExpansion gameExpansion);
 
+	Tag findByNameIgnoreCase(String tagName);
+
 }

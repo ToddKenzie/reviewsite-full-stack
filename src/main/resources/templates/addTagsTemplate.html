@@ -20,9 +20,10 @@
 			</section>
 			<section class="column-2">
                 <form method="POST">
+                    <p><strong>Add A Tag</strong></p>
                     <p>Enter the new tag<br/></p>
-                    <input type="text" name="newTagName"><br/><br/>
-                    <input type="submit" value="Submit">
+                    <input type="text" name="tagName"><br/><br/>
+                    <input type="submit" value="Submit" th:formaction="@{/tags/added}">
                 </form>
 				
 			</section>

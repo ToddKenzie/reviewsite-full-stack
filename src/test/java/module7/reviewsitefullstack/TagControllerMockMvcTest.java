@@ -99,10 +99,5 @@ public class TagControllerMockMvcTest {
 		mvc.perform(get("/tags/add")).andExpect(model().attribute("tags", allTags));
 	}
 	
-	
-	@Test
-	public void shouldAddOneTagToRepoViaModel() throws Exception {
-		
-	}
 
 }

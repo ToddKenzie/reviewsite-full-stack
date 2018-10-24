@@ -1,5 +1,8 @@
 package module7.reviewsitefullstack;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -77,5 +80,19 @@ public class TagControllerTest {
 		underTest.findAllTags(model);
 		verify(model).addAttribute("tags", allTags);
 	}
+	
+	@Test
+	public void shouldAddOneTagToRepoViaModel() throws Exception {
+		String newTagName = "newTagName";
+		Tag newTag = new Tag(newTagName);
+
+		when(tagRepo.findByNameIgnoreCase(newTagName)).thenReturn(null);
+		
+		underTest.addTag(newTagName);
+		when(tagRepo.save(newTag)).thenReturn(newTag);
+
+		
+	}
+
 
 }
