@@ -17,14 +17,21 @@
 				<ul>
 					<li th:each="tag : ${tags}"><a th:href="@{|/tags/${tag.id}|}" th:text="${tag.name}"></a></li>
 				</ul>
+
+				<p>Would you like to add a tag?<br/></p>
+				<button class="add-button">Go To Add Tag</button>
+
 			</section>
 			<section class="column-2">
-                <form method="POST">
-                    <p><strong>Add A Tag</strong></p>
-                    <p>Enter the new tag<br/></p>
-                    <input type="text" name="tagName"><br/><br/>
-                    <input type="submit" value="Submit" th:formaction="@{/tags/added}">
-                </form>
+
+				<img class="main-image" th:src="@{/images/tags.jpg}">
+
+				<form class="add-item" method="POST">
+					<p><strong>Add A Tag</strong></p>
+					<p>Enter the new tag<br/></p>
+					<input type="text" name="tagName"><br/><br/>
+					<input type="submit" value="Submit" th:formaction="@{/tags/added}">
+				</form>
 				
 			</section>
 		</main>
@@ -41,5 +48,7 @@
 			<p class="co">&copy; MopamusWrex Gaming 2018</p>
 		</footer>
 	</div>
+
+	<script type="text/javascript" th:src="@{/js/scriptEdit.js}"></script>
 </body>
 </html>

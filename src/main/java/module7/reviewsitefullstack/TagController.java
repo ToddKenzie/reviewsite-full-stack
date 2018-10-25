@@ -46,22 +46,22 @@ public class TagController {
 		return "allTagsTemplate";
 	}
 	
-	@GetMapping("/add")
+	@GetMapping("/edit")
 	public String findAllTagsForAddPage(Model model) {
 		model.addAttribute("tags", tagRepo.findAllByOrderByNameAsc());
-		return "addTagsTemplate";
+		return "editTagsTemplate";
 	}
 
-	@RequestMapping("/added")
+	@PostMapping("/added")
 	public String addTag(String tagName) {
 		Tag newTag = tagRepo.findByNameIgnoreCase(tagName);
 		
 		if(newTag==null) {
-			String formattedTagName = tagName.substring(0, 1).toUpperCase() + tagName.substring(1).toLowerCase();
+			String formattedTagName = StringFormatter.convertToPascalCaseWithSpace(tagName);
 			newTag = new Tag(formattedTagName);
 			tagRepo.save(newTag);
 		}
-		return "redirect:/tags/add";
+		return "redirect:/tags/edit";
 	}
 	
 
