@@ -18,21 +18,29 @@
 					<li th:each="tag : ${tags}"><a th:href="@{|/tags/${tag.id}|}" th:text="${tag.name}"></a></li>
 				</ul>
 
-				<p>Would you like to add a tag?<br/></p>
-				<button class="add-button">Go To Add Tag</button>
+				<p>Would you like to edit tags?<br/></p>
+				<button class="add-button">Edit Tags</button>
 
 			</section>
 			<section class="column-2">
-
 				<img class="main-image" th:src="@{/images/tags.jpg}">
 
-				<form class="add-item" method="POST">
-					<p><strong>Add A Tag</strong></p>
-					<p>Enter the new tag<br/></p>
-					<input type="text" name="tagName"><br/><br/>
-					<input type="submit" value="Submit" th:formaction="@{/tags/added}">
-				</form>
-				
+				<div class="editing">
+					<form class="add-item" method="POST">
+						<p><strong>Add A Tag</strong></p>
+						<p>Enter the new tag name<br/></p>
+						<input id="add-text" type="text" name="tagName"><br/><br/>
+						<input id="add-submit" type="submit" value="Submit" th:formaction="@{/tags/added}">
+						<p id="exists"><em>This Tag already exists</em></p>
+					</form>
+
+					<form class="delete-item" method="POST">
+						<p><strong>Remove Tag</strong></p>
+						<p>Enter tag name<br/></p>
+						<input type="text" name="tagName"><br/><br/>
+						<input type="submit" value="Submit" th:formaction="@{/tags/delete}">
+					</form>
+				</div>
 			</section>
 		</main>
 

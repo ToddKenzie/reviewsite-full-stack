@@ -84,13 +84,22 @@ public class TagControllerTest {
 	}
 	
 	@Test
-	public void shouldAddOneTagToRepoViaModel() throws Exception {
+	public void shouldAddOneTagToModelByName() throws Exception {
 		String tagName = "New tag name";
 		underTest.addTag(tagName);
 
 		ArgumentCaptor<Tag> tagArgument = ArgumentCaptor.forClass(Tag.class);
 		verify(tagRepo).save(tagArgument.capture());
 		assertEquals("New Tag Name", tagArgument.getValue().name);
+	}
+	
+	@Test
+	public void shouldDeleteTagFromModelByName() throws Exception {
+		String tagName = "Tagname";
+		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
+		
+		underTest.deleteTagByName(tagName);
+		verify(tagRepo).delete(tagA);
 	}
 
 

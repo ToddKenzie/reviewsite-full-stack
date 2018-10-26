@@ -63,6 +63,16 @@ public class TagController {
 		}
 		return "redirect:/tags/edit";
 	}
+
+	@PostMapping("/delete")
+	public String deleteTagByName(String tagName) {
+		Tag tag = tagRepo.findByNameIgnoreCase(tagName);
+		
+		if(tag != null) {
+			tagRepo.delete(tag);
+		}
+		return "redirect:/tags/edit";
+	}
 	
 
 }

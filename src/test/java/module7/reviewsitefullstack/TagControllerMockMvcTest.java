@@ -3,9 +3,11 @@ package module7.reviewsitefullstack;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -85,18 +87,23 @@ public class TagControllerMockMvcTest {
 	}
 	
 	@Test
-	public void shouldBeOkAndRouteToAddSite() throws Exception {
-		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
-		when(tagRepo.findAll()).thenReturn(allTags);
-		mvc.perform(get("/tags/add")).andExpect(status().isOk());
-		mvc.perform(get("/tags/add")).andExpect(view().name(is("addTagsTemplate")));
+	public void onAddShouldRouteToEditSite() throws Exception {
+		mvc.perform(post("/tags/added").param("tagName", "Tagname"))
+			.andExpect(redirectedUrl("/tags/edit"));
 	}
 	
 	@Test
-	public void shouldAddAllTagsIntoAddSiteModel() throws Exception {
+	public void onDeleteShouldRouteToEditSite() throws Exception {
+		mvc.perform(post("/tags/delete").param("tagName", "Tagname"))
+			.andExpect(redirectedUrl("/tags/edit"));
+	}
+	
+	@Test
+	public void shouldBeOkAndAllTagsAddedToModelForEditSite() throws Exception {
 		Collection<Tag> allTags = Arrays.asList(tag, secondTag);
 		when(tagRepo.findAllByOrderByNameAsc()).thenReturn(allTags);
-		mvc.perform(get("/tags/add")).andExpect(model().attribute("tags", allTags));
+		mvc.perform(get("/tags/edit")).andExpect(status().isOk());
+		mvc.perform(get("/tags/edit")).andExpect(model().attribute("tags", allTags));
 	}
 	
 
