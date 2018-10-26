@@ -26,19 +26,19 @@
 				<img class="main-image" th:src="@{/images/tags.jpg}">
 
 				<div class="editing">
-					<form class="add-item" method="POST">
+					<form class="add-item" method="POST" autocomplete="off">
 						<p><strong>Add A Tag</strong></p>
 						<p>Enter the new tag name<br/></p>
 						<input id="add-text" type="text" name="tagName"><br/><br/>
-						<input id="add-submit" type="submit" value="Submit" th:formaction="@{/tags/added}">
+						<input id="add-submit" type="submit" value="Submit" th:formaction="@{/tags/added}" disabled>
 						<p id="exists"><em>This Tag already exists</em></p>
 					</form>
 
-					<form class="delete-item" method="POST">
+					<form class="delete-item" method="POST" autocomplete="off">
 						<p><strong>Remove Tag</strong></p>
 						<p>Enter tag name<br/></p>
-						<input type="text" name="tagName"><br/><br/>
-						<input type="submit" value="Submit" th:formaction="@{/tags/delete}">
+						<input id="delete-text" type="text" name="tagName"><br/><br/>
+						<input id="delete-submit" type="submit" value="Submit" th:formaction="@{/tags/delete}" disabled>
 					</form>
 				</div>
 			</section>

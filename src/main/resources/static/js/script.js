@@ -1,6 +1,6 @@
-const contains = (list, addText) => {
+const contains = (list, checkText) => {
     for (let i = 0; i < list.length; i++) {
-        if (list[i].textContent.toLowerCase() === addText.toLowerCase()) {
+        if (list[i].textContent.toLowerCase() === checkText.toLowerCase()) {
             return true;
         }
     }
@@ -24,14 +24,28 @@ var exists = document.getElementById("exists");
 var addSubmit = document.getElementById("add-submit");
 var list = document.querySelectorAll("section ul li");
 
-document.getElementById("add-text").addEventListener('keyup', function () {
+var addText = document.getElementById("add-text");
 
-    if (contains(list, document.getElementById("add-text").value)) {
+addText.addEventListener('keyup', function () {
+    if (contains(list, addText.value)) {
         addSubmit.disabled = true;
         exists.style.display = "block";
+    } else if (addText.value === "") {
+        addSubmit.disabled = true;
     } else {
         addSubmit.disabled = false;
         exists.style.display = "none";
+    }
+})
+
+var deleteText = document.getElementById("delete-text");
+var deleteSubmit = document.getElementById("delete-submit");
+
+deleteText.addEventListener('keyup', function() {
+    if (contains(list, deleteText.value)) {
+        deleteSubmit.disabled = false;
+    } else {
+        deleteSubmit.disabled = true;
     }
 })
 
