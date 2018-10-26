@@ -1,6 +1,5 @@
 package module7.reviewsitefullstack;
 
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -9,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -49,6 +49,9 @@ public class TagControllerTest {
 	
 	@Mock
 	private GameExpansionRepository gameExpansionRepo;
+	
+	@Mock
+	private GameExpansion gameXp;
 	
 	@Before
 	public void setUp() {
@@ -96,11 +99,39 @@ public class TagControllerTest {
 	@Test
 	public void shouldDeleteTagFromModelByName() throws Exception {
 		String tagName = "Tagname";
+		
 		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
 		
 		underTest.deleteTagByName(tagName);
 		verify(tagRepo).delete(tagA);
 	}
+	
+	@Test
+	public void shouldDeleteTagFromGameReviewsWithIt() throws Exception {
+		String tagName = "Tagname";
+		Collection<Tag> allTags = new LinkedList<>(Arrays.asList(tagA, tagB));
+		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
+		
+		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
+		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
+		when(reviewA.getTags()).thenReturn(allTags);
+		
+		underTest.deleteTagByName(tagName);
+		assertThat(allTags, containsInAnyOrder(tagB));
+	}
 
+	@Test
+	public void shouldDeleteTagFromGameExpansionsWithIt() throws Exception {
+		String tagName = "Tagname";
+		Collection<Tag> allXpTags = new LinkedList<>(Arrays.asList(tagA, tagB));
+		Collection<GameExpansion> xPWithTag = Arrays.asList(gameXp);
+		
+		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
+		when(gameExpansionRepo.findByTagsContains(tagA)).thenReturn(xPWithTag);
+		when(gameXp.getTags()).thenReturn(allXpTags);
+		
+		underTest.deleteTagByName(tagName);
+		assertThat(allXpTags, containsInAnyOrder(tagB));
+	}
 
 }

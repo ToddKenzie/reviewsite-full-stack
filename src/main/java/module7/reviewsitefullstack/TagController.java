@@ -1,5 +1,6 @@
 package module7.reviewsitefullstack;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -37,7 +38,6 @@ public class TagController {
 			return "singleTagTemplate";
 		}
 		throw new NoTagFoundException();
-		
 	}
 
 	@GetMapping("/all")
@@ -66,12 +66,28 @@ public class TagController {
 
 	@PostMapping("/delete")
 	public String deleteTagByName(String tagName) {
-		Tag tag = tagRepo.findByNameIgnoreCase(tagName);
+		Tag tagToDelete = tagRepo.findByNameIgnoreCase(tagName);
 		
-		if(tag != null) {
-			tagRepo.delete(tag);
+		if(tagToDelete != null) {
+			deleteSpecificTagFromGameReviews(tagToDelete);
+			deleteSpecificTagFromGameExpansions(tagToDelete);
+			tagRepo.delete(tagToDelete);
 		}
 		return "redirect:/tags/edit";
+	}
+	
+	public void deleteSpecificTagFromGameReviews(Tag tagToDelete) {
+		Collection<GameReview> gamesWithTag = gameReviewRepo.findByTagsContains(tagToDelete);
+		for (GameReview gameReview : gamesWithTag) {
+			gameReview.getTags().remove(tagToDelete);
+		}
+	}
+	
+	public void deleteSpecificTagFromGameExpansions(Tag tagToDelete) {
+		Collection<GameExpansion> gameXpsWithTag = gameExpansionRepo.findByTagsContains(tagToDelete);
+		for (GameExpansion gameXp: gameXpsWithTag) {
+			gameXp.getTags().remove(tagToDelete);
+		}
 	}
 	
 
