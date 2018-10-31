@@ -1,14 +1,19 @@
 package module7.reviewsitefullstack;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -45,6 +50,9 @@ public class TagControllerTest {
 	@Mock
 	private GameExpansionRepository gameExpansionRepo;
 	
+	@Mock
+	private GameExpansion gameXp;
+	
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -76,6 +84,54 @@ public class TagControllerTest {
 		
 		underTest.findAllTags(model);
 		verify(model).addAttribute("tags", allTags);
+	}
+	
+	@Test
+	public void shouldAddOneTagToModelByName() throws Exception {
+		String tagName = "New tag name";
+		underTest.addTag(tagName);
+
+		ArgumentCaptor<Tag> tagArgument = ArgumentCaptor.forClass(Tag.class);
+		verify(tagRepo).save(tagArgument.capture());
+		assertEquals("New Tag Name", tagArgument.getValue().name);
+	}
+	
+	@Test
+	public void shouldDeleteTagFromModelByName() throws Exception {
+		String tagName = "Tagname";
+		
+		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
+		
+		underTest.deleteTagByName(tagName);
+		verify(tagRepo).delete(tagA);
+	}
+	
+	@Test
+	public void shouldDeleteTagFromGameReviewsWithIt() throws Exception {
+		String tagName = "Tagname";
+		Collection<Tag> allTags = new LinkedList<>(Arrays.asList(tagA, tagB));
+		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
+		
+		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
+		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
+		when(reviewA.getTags()).thenReturn(allTags);
+		
+		underTest.deleteTagByName(tagName);
+		assertThat(allTags, containsInAnyOrder(tagB));
+	}
+
+	@Test
+	public void shouldDeleteTagFromGameExpansionsWithIt() throws Exception {
+		String tagName = "Tagname";
+		Collection<Tag> allXpTags = new LinkedList<>(Arrays.asList(tagA, tagB));
+		Collection<GameExpansion> xPWithTag = Arrays.asList(gameXp);
+		
+		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
+		when(gameExpansionRepo.findByTagsContains(tagA)).thenReturn(xPWithTag);
+		when(gameXp.getTags()).thenReturn(allXpTags);
+		
+		underTest.deleteTagByName(tagName);
+		assertThat(allXpTags, containsInAnyOrder(tagB));
 	}
 
 }

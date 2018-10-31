@@ -56,6 +56,18 @@ main {
 	max-height: 600px;
 }
 
+.main-image {
+	display: none;
+}
+
+.editing {
+	display: none;
+}
+
+#exists {
+	display: none;
+}
+
 #game-link {
 	display: block;
 }
