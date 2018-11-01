@@ -51,7 +51,7 @@ public class ReviewRepositoryTest {
 	}
 	
 	@Test
-	public void shouldSaveAndLoadTag() {	
+	public void shouldSaveAndLoadReview() {	
 		Optional<Review> underTest = reviewRepo.findById(reviewId);
 		Review testReview = underTest.get();
 		assertThat(testReview, is(review1));
