@@ -7,26 +7,11 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Review {
-
-	@Id
-	@GeneratedValue
-	private long id;
-	
-	@Lob
-	private String text;
+public class Review extends Post{
 
 	@OneToOne
 	private Game game;
 	
-	public long getId() {
-		return id;
-	}
-
-	public String getText() {
-		return text;
-	}
-
 	public Game getGame() {
 		return game;
 	}
@@ -34,7 +19,7 @@ public class Review {
 	public Review() {}
 	
 	public Review(String text, Game game) {
-		this.text = text;
+		super(text);
 		this.game = game;
 	}
 	

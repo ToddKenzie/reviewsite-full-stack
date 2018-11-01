@@ -1,29 +1,11 @@
 package module7.reviewsitefullstack;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
-public class Comment {
-
-	@Id
-	@GeneratedValue
-	private long id;
-	
-	@Lob
-	private String text;
+public class Comment extends Post{
 
 	private String username;
-	
-	public long getId() {
-		return id;
-	}
-	
-	public String getText() {
-		return text;
-	}
 	
 	public String getUsername() {
 		return username;
@@ -32,7 +14,7 @@ public class Comment {
 	public Comment() {}
 
 	public Comment(String text, String username) {
-		this.text = text;
+		super(text);
 		this.username = username;
 	}
 
