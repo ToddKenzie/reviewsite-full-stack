@@ -1,23 +1,34 @@
 package module7.reviewsitefullstack;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tag extends Grouping {
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameReview> gameReviews;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameExpansion> gameExpansions;
 	
 	public Collection<GameReview> getGameReviews() {
 		return gameReviews;
+	}
+	
+	public Collection<Long> getGameReviewIds() {
+		Collection<Long> gameReviewIds = new ArrayList<>();
+		for (GameReview gameReview : gameReviews) {
+			gameReviewIds.add(gameReview.getId());
+		}
+		return gameReviewIds;
 	}
 	
 	public Collection<GameExpansion> getGameExpansions() {

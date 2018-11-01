@@ -37,6 +37,8 @@
 			<p class="buttons" th:each="tag : ${gameReview.tags}"> 
 				<a th:href="@{|/tags/${tag.id}|}"><button  th:text="${tag.name}"></button></a>
 			</p>
+			<p>Would you like to edit the tags for this review?</p>
+			<a th:href="@{|/|}"><button>Edit Tags</button></a>
 		</div>
 		
 		<nav>
