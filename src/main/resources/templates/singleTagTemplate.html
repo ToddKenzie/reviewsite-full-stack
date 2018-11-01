@@ -13,10 +13,10 @@
 		</header>
 
 		<main>
-			<section class="column-1" th:if="${tag.gameReviews}">
+			<section class="column-1" th:if="${tag.games}">
 				<h3>Game Reviews with this Tag</h3>
-				<ul th:each="review : ${tag.gameReviews}">
-					<li><a th:href="@{|/gameReview/${review.id}|}" th:text="${review.name}"></a></li>
+				<ul th:each="game : ${tag.games}">
+					<li><a th:href="@{|/gameReview/${game.id}|}" th:text="${game.name}"></a></li>
 				</ul>
 			</section>
 

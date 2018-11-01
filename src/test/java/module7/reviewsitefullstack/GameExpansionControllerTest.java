@@ -29,13 +29,13 @@ public class GameExpansionControllerTest {
 	private GameExpansion gameXp2;
 
 	@Mock
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview reviewA;
+	private Game gameA;
 	
 	@Mock
-	private GameReview reviewB;
+	private Game gameB;
 		
 	@Mock
 	private TagRepository tagRepo;

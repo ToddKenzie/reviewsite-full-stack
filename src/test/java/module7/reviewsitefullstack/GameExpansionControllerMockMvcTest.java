@@ -38,10 +38,10 @@ public class GameExpansionControllerMockMvcTest {
 	private GameExpansion secondXp;
 	
 	@MockBean
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview gameReview;
+	private Game game;
 	
 	@MockBean
 	private TagRepository tagRepo;
@@ -51,7 +51,7 @@ public class GameExpansionControllerMockMvcTest {
 	@Test
 	public void shouldBeOkAndRouteToSingleExpansionSite() throws Exception {
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
-		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
+		when(gameRepo.findByGameExpansion(gameXp)).thenReturn(game);
 		mvc.perform(get("/gameExpansion/1")).andExpect(status().isOk());
 		mvc.perform(get("/gameExpansion/1")).andExpect(view().name(is("singleExpansionTemplate")));
 	}
@@ -64,7 +64,7 @@ public class GameExpansionControllerMockMvcTest {
 	@Test
 	public void shouldAddSingleExpansionIntoModel() throws Exception {
 		when(gameExpansionRepo.findById(arbitraryId)).thenReturn(Optional.of(gameXp));
-		when(gameReviewRepo.findByGameExpansion(gameXp)).thenReturn(gameReview);
+		when(gameRepo.findByGameExpansion(gameXp)).thenReturn(game);
 		mvc.perform(get("/gameExpansion/1")).andExpect(model().attribute("gameExpansion", gameXp));
 		
 	}

@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GameReviewPopulator implements CommandLineRunner {
+public class GamePopulator implements CommandLineRunner {
 
 	@Resource
 	private GameCategoryRepository gameCategoryRepo;
@@ -15,7 +15,7 @@ public class GameReviewPopulator implements CommandLineRunner {
 	private TagRepository tagRepo;
 
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameReviewRepo;
 
 	@Resource
 	private GameExpansionRepository gameExpansionRepo;
@@ -48,14 +48,14 @@ public class GameReviewPopulator implements CommandLineRunner {
 
 		// String name, String rangeOfPlayers, String timeToComplete, String synopsis,
 		// String weblink, String pictureLink
-		GameReview root = gameReviewRepo.save(new GameReview("Root", "2-4", "60 to 90 min",
+		Game root = gameReviewRepo.save(new Game("Root", "2-4", "60 to 90 min",
 				"Multiple factions are vying for control of the forest (or just reputation) in their own, unique way.",
 				"http://ledergames.com/root/", "root.png",
 				board, competitive, animals, twoPlayer, strategy, asymmetric));
 		Review reviewRoot = reviewRepo.save(new Review("Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutter. <br /><br /> Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.",
 				root));
 		
-		GameReview mind = gameReviewRepo.save(new GameReview("The Mind", "2-4", "20 min",
+		Game mind = gameReviewRepo.save(new Game("The Mind", "2-4", "20 min",
 				"Simple rules: Play the cards in sequence.  The catch: you can't discuss what's in your hand at all.",
 				"https://www.pandasaurusgames.com/product/the-mind/", "the-mind.png",
 				card, coop, twoPlayer, strategy, abst));
@@ -64,7 +64,7 @@ public class GameReviewPopulator implements CommandLineRunner {
 				+ "Quarter bilge water rutters lanyard heave to sheet hang the jib avast salmagundi skysail. Gold Road lugger barque loot aye wench hearties Buccaneer no prey, no pay port. Jack aft scuttle heave to case shot quarter hempen halter sloop Sea Legs heave down.",
 				mind));
 		
-		GameReview blackOrchestra = gameReviewRepo.save(new GameReview("Black Orchestra", "1-5", "90 min",
+		Game blackOrchestra = gameReviewRepo.save(new Game("Black Orchestra", "1-5", "90 min",
 				"You and your friends play as people inside Germany during the rise of Hitler attempting to kill him and stop his reign of terror.",
 				"https://www.starling.games/black-orchestra/", "black-orchestra.png",
 				board, coop, ww2, strategy, singlePlayer, twoPlayer));
@@ -73,7 +73,7 @@ public class GameReviewPopulator implements CommandLineRunner {
 				+ "Lass loaded to the gunwalls grog lateen sail pillage gangplank driver splice the main brace hulk knave. Flogging grog blossom scuttle main sheet salmagundi rum stern provost hearties wench. Lugger blow the man down overhaul swing the lead man-of-war snow furl run a shot across the bow line scourge of the seven seas.",
 				blackOrchestra));
 		
-		GameReview concordia = gameReviewRepo.save(new GameReview("Concordia", "2-5", "90 min",
+		Game concordia = gameReviewRepo.save(new Game("Concordia", "2-5", "90 min",
 				"Part board game, part deck-builder: develop your trade network across Ancient Europe to dominate your rivals.",
 				"http://riograndegames.com/Game/1279-Concordia", "concordia.png",
 				board, deckbuild, twoPlayer, strategy, competitive, greece));
@@ -82,7 +82,7 @@ public class GameReviewPopulator implements CommandLineRunner {
 				+ "Sheet bilged on her anchor jib wench stern jack swab fire in the hole clap of thunder gangplank. Poop deck gangplank ballast wherry lad starboard fire ship code of conduct reef crack Jennys tea cup. Draft jury mast strike colors gibbet measured fer yer chains lookout avast spyglass scurvy code of conduct.",
 				concordia));
 		
-		GameReview grizzled = gameReviewRepo.save(new GameReview("The Grizzled", "3-5", "30 min",
+		Game grizzled = gameReviewRepo.save(new Game("The Grizzled", "3-5", "30 min",
 				"Playing as a group of WWI soldiers from France, your objective is not to win the war, just survive it.",
 				"https://cmon.com/product/the-grizzled/the-grizzled", "the-grizzled.png",
 				card, coop, ww1, strategy));
@@ -91,7 +91,7 @@ public class GameReviewPopulator implements CommandLineRunner {
 				+ "Gun jolly boat ye scallywag maroon fire in the hole belaying pin Blimey parley bucko. Nipperkin hang the jib reef sails swab jury mast gabion Sea Legs Corsair quarter coxswain. Nelsons folly belaying pin fathom skysail stern Davy Jones' Locker lateen sail Sea Legs wench hardtack.",
 				grizzled));
 		
-		GameReview wayOfPanda = gameReviewRepo.save(new GameReview("Way of the Panda", "2-4", "60 - 90 min",
+		Game wayOfPanda = gameReviewRepo.save(new Game("Way of the Panda", "2-4", "60 - 90 min",
 				"Your clan and other panda clans are attempting to retake and rebuild your land from the human ninjas.",
 				"https://cmon.com/product/way-of-the-panda/way-of-the-panda", "way-of-the-panda.png",
 				board, animals, strategy, competitive, twoPlayer, ninja));

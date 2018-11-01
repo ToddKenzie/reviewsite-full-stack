@@ -22,7 +22,7 @@ public class TagController {
 	private TagRepository tagRepo;
 	
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Resource
 	private GameExpansionRepository gameExpansionRepo;
@@ -33,7 +33,7 @@ public class TagController {
 		
 		if(tag.isPresent()) {
 			model.addAttribute("tag", tag.get());
-			model.addAttribute("gameReviews", gameReviewRepo.findByTagsContains(tag.get()));
+			model.addAttribute("games", gameRepo.findByTagsContains(tag.get()));
 			model.addAttribute("gameExpansions", gameExpansionRepo.findByTagsContains(tag.get()));
 			return "singleTagTemplate";
 		}
@@ -69,16 +69,16 @@ public class TagController {
 		Tag tagToDelete = tagRepo.findByNameIgnoreCase(tagName);
 		
 		if(tagToDelete != null) {
-			deleteSpecificTagFromGameReviews(tagToDelete);
+			deleteSpecificTagFromGames(tagToDelete);
 			deleteSpecificTagFromGameExpansions(tagToDelete);
 			tagRepo.delete(tagToDelete);
 		}
 		return "redirect:/tags/edit";
 	}
 	
-	public void deleteSpecificTagFromGameReviews(Tag tagToDelete) {
-		Collection<GameReview> gamesWithTag = gameReviewRepo.findByTagsContains(tagToDelete);
-		for (GameReview gameReview : gamesWithTag) {
+	public void deleteSpecificTagFromGames(Tag tagToDelete) {
+		Collection<Game> gamesWithTag = gameRepo.findByTagsContains(tagToDelete);
+		for (Game gameReview : gamesWithTag) {
 			gameReview.getTags().remove(tagToDelete);
 		}
 	}

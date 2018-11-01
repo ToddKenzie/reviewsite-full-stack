@@ -18,13 +18,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
-public class GameReviewRepositoryTest {
+public class GameRepositoryTest {
 	
 	@Resource
 	private TestEntityManager entity;
 	
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 
 	@Resource
 	private GameCategoryRepository gameCategoryRepo;
@@ -32,9 +32,9 @@ public class GameReviewRepositoryTest {
 	@Resource
 	private TagRepository tagRepo;
 	
-	GameReview gReview1;
-	GameReview gReview2;
-	GameReview gReview3;
+	Game game1;
+	Game game2;
+	Game game3;
 	
 	GameCategory board;
 	GameCategory card;
@@ -50,9 +50,9 @@ public class GameReviewRepositoryTest {
 		coop = tagRepo.save(new Tag("co-op"));
 		competitive = tagRepo.save(new Tag("competitive"));
 
-		gReview1 = gameReviewRepo.save(new GameReview("Root", "", "", "", "", "", board, coop, competitive));
-		gReview2 = gameReviewRepo.save(new GameReview("Concordia", "", "", "", "", "", board, competitive));
-		gReview3 = gameReviewRepo.save(new GameReview("The Mind", "", "", "", "", "", card, coop));
+		game1 = gameRepo.save(new Game("Root", "", "", "", "", "", board, coop, competitive));
+		game2 = gameRepo.save(new Game("Concordia", "", "", "", "", "", board, competitive));
+		game3 = gameRepo.save(new Game("The Mind", "", "", "", "", "", card, coop));
 		
 		entity.flush();
 		entity.clear();
@@ -60,18 +60,18 @@ public class GameReviewRepositoryTest {
 	
 	@Test
 	public void shouldGenerateGameReviewId() {
-		Long testID = gReview1.getId();
+		Long testID = game1.getId();
 		
 		assertThat(testID, greaterThan(0L));
 	}
 	
 	@Test
 	public void shouldSaveAndLoadAReview() {
-		long testID = gReview1.getId();
+		long testID = game1.getId();
 		
-		Optional<GameReview> underTest = gameReviewRepo.findById(testID);
-		GameReview testReview = underTest.get();
-		assertThat(testReview, is(gReview1));
+		Optional<Game> underTest = gameRepo.findById(testID);
+		Game testReview = underTest.get();
+		assertThat(testReview, is(game1));
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ public class GameReviewRepositoryTest {
 			
 		Optional<GameCategory> testBoard = gameCategoryRepo.findById(boardID);
 		GameCategory underTest = testBoard.get();
-		assertThat(underTest.getGameReviews(), containsInAnyOrder(gReview1, gReview2));
+		assertThat(underTest.getGames(), containsInAnyOrder(game1, game2));
 	}
 	
 	@Test
@@ -89,7 +89,7 @@ public class GameReviewRepositoryTest {
 		
 		Optional<Tag> testTag = tagRepo.findById(tagID);
 		Tag underTest = testTag.get();
-		assertThat(underTest.getGameReviews(), containsInAnyOrder(gReview1, gReview3));
+		assertThat(underTest.getGames(), containsInAnyOrder(game1, game3));
 	}
 	
 	

@@ -39,13 +39,13 @@ public class TagControllerTest {
 	long arbitraryId = 1;
 	
 	@Mock
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview reviewA;
+	private Game gameA;
 	
 	@Mock
-	private GameReview reviewB;
+	private Game gameB;
 	
 	@Mock
 	private GameExpansionRepository gameExpansionRepo;
@@ -68,13 +68,13 @@ public class TagControllerTest {
 	}
 	
 	@Test
-	public void checkForGameReviewsWithSingleTagModel() throws Exception {
-		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
+	public void checkForGamesWithSingleTagModel() throws Exception {
+		Collection<Game> gamesWithTag = Arrays.asList(gameA, gameB);
 		when(tagRepo.findById(arbitraryId)).thenReturn(Optional.of(tagA));
-		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
+		when(gameRepo.findByTagsContains(tagA)).thenReturn(gamesWithTag);
 		
 		underTest.findOneTag(arbitraryId, model);
-		verify(model).addAttribute("gameReviews", reviewsWithTag);
+		verify(model).addAttribute("games", gamesWithTag);
 	}
 	
 	@Test
@@ -110,11 +110,11 @@ public class TagControllerTest {
 	public void shouldDeleteTagFromGameReviewsWithIt() throws Exception {
 		String tagName = "Tagname";
 		Collection<Tag> allTags = new LinkedList<>(Arrays.asList(tagA, tagB));
-		Collection<GameReview> reviewsWithTag = Arrays.asList(reviewA, reviewB);
+		Collection<Game> gamesWithTag = Arrays.asList(gameA, gameB);
 		
 		when(tagRepo.findByNameIgnoreCase(tagName)).thenReturn(tagA);
-		when(gameReviewRepo.findByTagsContains(tagA)).thenReturn(reviewsWithTag);
-		when(reviewA.getTags()).thenReturn(allTags);
+		when(gameRepo.findByTagsContains(tagA)).thenReturn(gamesWithTag);
+		when(gameA.getTags()).thenReturn(allTags);
 		
 		underTest.deleteTagByName(tagName);
 		assertThat(allTags, containsInAnyOrder(tagB));

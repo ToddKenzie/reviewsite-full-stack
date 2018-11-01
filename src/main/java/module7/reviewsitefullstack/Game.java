@@ -10,12 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class GameReview extends PlayedObject{
+public class Game extends PlayedObject{
 
-	@OneToOne(mappedBy = "gameReview")
+	@OneToOne(mappedBy = "game")
 	private Review review;
 	
-	@OneToOne(mappedBy = "gameReview")
+	@OneToOne(mappedBy = "game")
 	private GameExpansion gameExpansion;
 	
 	@ManyToOne
@@ -40,9 +40,9 @@ public class GameReview extends PlayedObject{
 		return tags;
 	}
 
-	public GameReview() {}
+	public Game() {}
 	
-	public GameReview(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink, GameCategory gameCategory, Tag...tags) {
+	public Game(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink, GameCategory gameCategory, Tag...tags) {
 		super(name, rangeOfPlayers, timeToComplete, synopsis, weblink, pictureLink);
 		this.gameCategory = gameCategory;
 		this.tags = new HashSet<>(Arrays.asList(tags));
@@ -64,7 +64,7 @@ public class GameReview extends PlayedObject{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameReview other = (GameReview) obj;
+		Game other = (Game) obj;
 		if (id != other.id)
 			return false;
 		return true;

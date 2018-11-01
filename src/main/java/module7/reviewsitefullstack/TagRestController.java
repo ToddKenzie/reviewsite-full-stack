@@ -17,7 +17,7 @@ public class TagRestController {
 	private TagRepository tagRepo;
 	
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameReviewRepo;
 	
 	@RequestMapping("/")
 	public Iterable<Tag> findAllTags() {
@@ -26,7 +26,7 @@ public class TagRestController {
 	
 	@RequestMapping("/gameReview/{id}")
 	public Collection<Tag> findAllTagsByGameReview(@PathVariable long id) {
-		Optional<GameReview> gameReview = gameReviewRepo.findById(id);
-		return tagRepo.findByGameReviewsContains(gameReview.get());
+		Optional<Game> gameReview = gameReviewRepo.findById(id);
+		return tagRepo.findByGamesContains(gameReview.get());
 	}
 }

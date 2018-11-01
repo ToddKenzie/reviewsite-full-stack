@@ -24,7 +24,6 @@ public class GameExpansionRepositoryTest {
 	@Resource
 	private GameExpansionRepository gameExpansionRepo;
 	
-	//String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink
 	@Test
 	public void shouldCreateOwnId() {
 		GameExpansion gameXp = new GameExpansion("xp 1", "", "", "", "", "", null);

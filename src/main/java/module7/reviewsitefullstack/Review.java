@@ -17,7 +17,7 @@ public class Review {
 	private String text;
 
 	@OneToOne
-	private GameReview gameReview;
+	private Game game;
 	
 	public long getId() {
 		return id;
@@ -27,15 +27,15 @@ public class Review {
 		return text;
 	}
 
-	public GameReview getGameReview() {
-		return gameReview;
+	public Game getGame() {
+		return game;
 	}
 	
 	public Review() {}
 	
-	public Review(String text, GameReview gameReview) {
+	public Review(String text, Game game) {
 		this.text = text;
-		this.gameReview = gameReview;
+		this.game = game;
 	}
 	
 	@Override

@@ -20,7 +20,7 @@ public class GameCategoryController {
 	private GameCategoryRepository gameCategoryRepo;
 	
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 
 	@GetMapping("/{id:[\\d]+}")
@@ -29,7 +29,7 @@ public class GameCategoryController {
 		
 		if(gameCategory.isPresent()) {
 			model.addAttribute("gameCategory", gameCategory.get());
-			model.addAttribute("gameReviews", gameReviewRepo.findByGameCategory(gameCategory.get()));
+			model.addAttribute("games", gameRepo.findByGameCategory(gameCategory.get()));
 			return "singleGameCategoryTemplate";
 		}
 		throw new NoGameCategoryException();

@@ -14,19 +14,19 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
-public class GameReviewControllerTest {
+public class GameControllerTest {
 	
 	@InjectMocks
-	private GameReviewController underTest;
+	private GameController underTest;
 	
 	@Mock
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview reviewA;
+	private Game gameA;
 	
 	@Mock
-	private GameReview reviewB;
+	private Game gameB;
 	
 	@Mock
 	private GameCategoryRepository gameCategoryRepo;
@@ -67,16 +67,16 @@ public class GameReviewControllerTest {
 	
 	@Test
 	public void addSingleReviewToModel() throws Exception {
-		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));
+		when(gameRepo.findById(arbitraryId)).thenReturn(Optional.of(gameA));
 		
 		underTest.findOneGameReview(arbitraryId, model);
-		verify(model).addAttribute("gameReview", reviewA);
+		verify(model).addAttribute("game", gameA);
 	}
 	
 	@Test
 	public void findSingleCategoryForSingleGameReviewToModel() throws Exception {
-		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));
-		when(gameCategoryRepo.findByGameReviewsContains(reviewA)).thenReturn(gameCatA);
+		when(gameRepo.findById(arbitraryId)).thenReturn(Optional.of(gameA));
+		when(gameCategoryRepo.findByGamesContains(gameA)).thenReturn(gameCatA);
 		
 		underTest.findOneGameReview(arbitraryId, model);
 		verify(model).addAttribute("gameCategory", gameCatA);		
@@ -85,8 +85,8 @@ public class GameReviewControllerTest {
 	@Test
 	public void findAllTagsForSingleGameReviewInModel() throws Exception {
 		Collection<Tag> allTagsForReview = Arrays.asList(tagA, tagB);
-		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(reviewA));
-		when(tagRepo.findByGameReviewsContains(reviewA)).thenReturn(allTagsForReview);
+		when(gameRepo.findById(arbitraryId)).thenReturn(Optional.of(gameA));
+		when(tagRepo.findByGamesContains(gameA)).thenReturn(allTagsForReview);
 		
 		underTest.findOneGameReview(arbitraryId, model);
 		verify(model).addAttribute("tags", allTagsForReview);	
@@ -94,11 +94,11 @@ public class GameReviewControllerTest {
 	
 	@Test
 	public void addAllGameReviewsToModel() throws Exception {
-		Collection<GameReview> allReviews = Arrays.asList(reviewA, reviewB);
-		when(gameReviewRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
+		Collection<Game> allReviews = Arrays.asList(gameA, gameB);
+		when(gameRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
 		
 		underTest.findAllGameReviews(model);
-		verify(model).addAttribute("gameReviews", allReviews);
+		verify(model).addAttribute("games", allReviews);
 	}
 		
 }

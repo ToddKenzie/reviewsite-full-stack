@@ -9,10 +9,10 @@ import javax.persistence.OneToMany;
 public class GameCategory extends Grouping {
 
 	@OneToMany(mappedBy = "gameCategory")
-	private Collection<GameReview> gameReviews;
+	private Collection<Game> games;
 	
-	public Collection<GameReview> getGameReviews() {
-		return gameReviews;
+	public Collection<Game> getGames() {
+		return games;
 	}
 
 	public GameCategory() {}

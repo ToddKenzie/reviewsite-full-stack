@@ -19,7 +19,7 @@
 					<h3>Here's a list of reviews fit to peruse</h3>
 
 					<ul>
-						<li th:each="review : ${gameReviews}"><a th:href="@{|/gameReview/${review.id}|}" th:text="${review.name}"></a></li>
+						<li th:each="game : ${games}"><a th:href="@{|/gameReview/${game.id}|}" th:text="${game.name}"></a></li>
 					</ul>
 				</article>
 

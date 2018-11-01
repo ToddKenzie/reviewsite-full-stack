@@ -13,13 +13,13 @@ import javax.persistence.OneToOne;
 public class GameExpansion extends PlayedObject{
 
 	@OneToOne
-	private GameReview gameReview;
+	private Game game;
 
 	@ManyToMany
 	private Collection<Tag> tags;
 
-	public GameReview getGameReview() {
-		return gameReview;
+	public Game getGame() {
+		return game;
 	}
 	
 	public Collection<Tag> getTags() {
@@ -28,9 +28,9 @@ public class GameExpansion extends PlayedObject{
 	
 	public GameExpansion() {}
 	
-	public GameExpansion(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink, GameReview gameReview, Tag...tags) {
+	public GameExpansion(String name, String rangeOfPlayers, String timeToComplete, String synopsis, String weblink, String pictureLink, Game game, Tag...tags) {
 		super(name, rangeOfPlayers, timeToComplete, synopsis, weblink, pictureLink);
-		this.gameReview = gameReview;
+		this.game = game;
 		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 

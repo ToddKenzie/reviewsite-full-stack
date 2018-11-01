@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin
 @Controller
 @RequestMapping("/gameReview")
-public class GameReviewController {
+public class GameController {
 	
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Resource
 	private GameCategoryRepository gameCategoryRepo;
@@ -27,24 +27,27 @@ public class GameReviewController {
 
 	@Resource
 	private GameExpansionRepository gameExpansionRepo;
+	
+	@Resource
+	private ReviewRepository reviewRepo;
 
 	@GetMapping("/{id:[\\d]+}")
-	public String findOneGameReview(@PathVariable Long id, Model model) throws NoGameReviewFoundException {
-		Optional<GameReview> gameReview = gameReviewRepo.findById(id);
+	public String findOneGameReview(@PathVariable Long id, Model model) throws NoGameFoundException {
+		Optional<Game> game = gameRepo.findById(id);
 		
-		if(gameReview.isPresent()) {
-			model.addAttribute("gameReview", gameReview.get());
-			model.addAttribute("gameCategory", gameCategoryRepo.findByGameReviewsContains(gameReview.get()));
-			model.addAttribute("tags", tagRepo.findByGameReviewsContains(gameReview.get()));
-			model.addAttribute("gameExpansion", gameExpansionRepo.findByGameReview(gameReview.get()));
+		if(game.isPresent()) {
+			model.addAttribute("game", game.get());
+			model.addAttribute("gameCategory", gameCategoryRepo.findByGamesContains(game.get()));
+			model.addAttribute("tags", tagRepo.findByGamesContains(game.get()));
+			model.addAttribute("gameExpansion", gameExpansionRepo.findByGame(game.get()));
 			return "singleGameReviewTemplate";
 		}
-		throw new NoGameReviewFoundException();
+		throw new NoGameFoundException();
 	}
 
 	@GetMapping("/all")
 	public String findAllGameReviews(Model model) {
-		model.addAttribute("gameReviews", gameReviewRepo.findAllByOrderByNameAsc());
+		model.addAttribute("games", gameRepo.findAllByOrderByNameAsc());
 		model.addAttribute("gameCategories", gameCategoryRepo.findAll());
 		return "gameReviewsTemplate";
 	}

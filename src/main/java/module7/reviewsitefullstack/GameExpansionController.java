@@ -20,7 +20,7 @@ public class GameExpansionController {
 	private GameExpansionRepository gameExpansionRepo;
 
 	@Resource
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Resource
 	private TagRepository tagRepo;
@@ -31,7 +31,7 @@ public class GameExpansionController {
 		
 		if(gameXp.isPresent()) {
 			model.addAttribute("gameExpansion", gameXp.get());
-			model.addAttribute("gameReview", gameReviewRepo.findByGameExpansion(gameXp.get()));
+			model.addAttribute("game", gameRepo.findByGameExpansion(gameXp.get()));
 			model.addAttribute("tags", tagRepo.findByGameExpansionsContains(gameXp.get()));
 			return "singleExpansionTemplate";
 		}

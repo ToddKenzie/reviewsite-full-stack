@@ -29,13 +29,13 @@ public class GameCategoryControllerTest {
 	private GameCategory gameCatB;
 	
 	@Mock
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview reviewA;
+	private Game gameA;
 	
 	@Mock
-	private GameReview reviewB;
+	private Game gameB;
 	
 	@Mock
 	private Model model;
@@ -56,13 +56,13 @@ public class GameCategoryControllerTest {
 	}
 	
 	@Test
-	public void findAllGameReviewsWithCategoryInModel() throws Exception {
-		Collection<GameReview> allReviewsWithCategory = Arrays.asList(reviewA, reviewB);
+	public void findAllGamesWithCategoryInModel() throws Exception {
+		Collection<Game> allGamesWithCategory = Arrays.asList(gameA, gameB);
 		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCatA));
-		when(gameReviewRepo.findByGameCategory(gameCatA)).thenReturn(allReviewsWithCategory);
+		when(gameRepo.findByGameCategory(gameCatA)).thenReturn(allGamesWithCategory);
 		
 		underTest.findOneGameCategory(arbitraryId, model);
-		verify(model).addAttribute("gameReviews", allReviewsWithCategory);
+		verify(model).addAttribute("games", allGamesWithCategory);
 
 	}
 	

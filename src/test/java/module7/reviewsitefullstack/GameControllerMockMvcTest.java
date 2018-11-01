@@ -24,20 +24,20 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(GameReviewController.class)
-public class GameReviewControllerMockMvcTest {
+@WebMvcTest(GameController.class)
+public class GameControllerMockMvcTest {
 	
 	@Resource
 	private MockMvc mvc;
 	
 	@MockBean
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview gameReview;
+	private Game game;
 	
 	@Mock
-	private GameReview secondReview;
+	private Game secondGame;
 
 	@MockBean
 	private GameCategoryRepository gameCategoryRepo;
@@ -54,45 +54,53 @@ public class GameReviewControllerMockMvcTest {
 	@Mock
 	private GameExpansion gameXp;
 	
+	@Mock
+	private Review review;
+	
+	@MockBean
+	private ReviewRepository reviewRepo;
+	
 	long arbitraryId = 1;
 	
+	//single test issues due to creation of Review object
 	@Test
-	public void shouldBeOkAndRouteToSingleGameReviewSite() throws Exception {
-		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(gameReview));
-		when(gameCategoryRepo.findByGameReviewsContains(gameReview)).thenReturn(gameCat);
-		when(gameExpansionRepo.findByGameReview(gameReview)).thenReturn(gameXp);
+	public void shouldBeOkAndRouteToSingleGameSite() throws Exception {
+		when(gameRepo.findById(arbitraryId)).thenReturn(Optional.of(game));
+		when(gameCategoryRepo.findByGamesContains(game)).thenReturn(gameCat);
+		when(gameExpansionRepo.findByGame(game)).thenReturn(gameXp);
+		when(reviewRepo.findByGame(game)).thenReturn(review);
 
 		mvc.perform(get("/gameReview/1")).andExpect(status().isOk());
 		mvc.perform(get("/gameReview/1")).andExpect(view().name(is("singleGameReviewTemplate")));
 	}
 
 	@Test
-	public void shouldNotBeOkForSingleGameReviewSiteWithInvalidId() throws Exception {
+	public void shouldNotBeOkForSingleGameSiteWithInvalidId() throws Exception {
 		mvc.perform(get("/gameReview/1")).andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void shouldPutSingleGameReviewIntoModel() throws Exception {
-		when(gameReviewRepo.findById(arbitraryId)).thenReturn(Optional.of(gameReview));
-		when(gameCategoryRepo.findByGameReviewsContains(gameReview)).thenReturn(gameCat);
-		when(gameExpansionRepo.findByGameReview(gameReview)).thenReturn(gameXp);
-		mvc.perform(get("/gameReview/1")).andExpect(model().attribute("gameReview", is(gameReview)));
+	public void shouldPutSingleGameIntoModel() throws Exception {
+		when(gameRepo.findById(arbitraryId)).thenReturn(Optional.of(game));
+		when(gameCategoryRepo.findByGamesContains(game)).thenReturn(gameCat);
+		when(gameExpansionRepo.findByGame(game)).thenReturn(gameXp);
+		mvc.perform(get("/gameReview/1")).andExpect(model().attribute("game", is(game)));
 	}
 	
 	
 	@Test
-	public void shouldBeOkAndRouteToAllGameReviewsSite() throws Exception {
-		Collection<GameReview> allReviews = Arrays.asList(gameReview, secondReview);
-		when(gameReviewRepo.findAll()).thenReturn(allReviews);
+	public void shouldBeOkAndRouteToAllGamesSite() throws Exception {
+		Collection<Game> allReviews = Arrays.asList(game, secondGame);
+		when(gameRepo.findAll()).thenReturn(allReviews);
 		mvc.perform(get("/gameReview/all")).andExpect(status().isOk());
 		mvc.perform(get("/gameReview/all")).andExpect(view().name(is("gameReviewsTemplate")));
 	}
 	
 	@Test
-	public void shouldAddAllGameReviewsToModel() throws Exception {
-		Collection<GameReview> allReviews = Arrays.asList(gameReview, secondReview);
-		when(gameReviewRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
-		mvc.perform(get("/gameReview/all")).andExpect(model().attribute("gameReviews", allReviews));
+	public void shouldAddAllGamesToModel() throws Exception {
+		Collection<Game> allReviews = Arrays.asList(game, secondGame);
+		when(gameRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
+		mvc.perform(get("/gameReview/all")).andExpect(model().attribute("games", allReviews));
 	}
 			
 }

@@ -10,31 +10,31 @@
 <body>
 	<div class="main-container">
 		<header>
-			<h1 th:text="${gameReview.name}"></h1>
+			<h1 th:text="${game.name}"></h1>
 			<h2>Game Category: <a th:href="@{|/gameCategory/${gameCategory.id}|}" th:text="${gameCategory.name}"></a></h2>
-			<h3 th:text="${gameReview.synopsis}"></h3>
+			<h3 th:text="${game.synopsis}"></h3>
 			<hr>
 		</header>
 		
 		<main>
 			<section class="column-1">
 				<ul class="info">
-					<li><i class="fas fa-users"></i> : <span th:text="${gameReview.rangeOfPlayers}"></span></li>
-					<li><i class="fas fa-stopwatch"></i> : <span th:text="${gameReview.timeToComplete}"></span></li>
+					<li><i class="fas fa-users"></i> : <span th:text="${game.rangeOfPlayers}"></span></li>
+					<li><i class="fas fa-stopwatch"></i> : <span th:text="${game.timeToComplete}"></span></li>
 				</ul>
-				<a id="game-link" th:href="@{${gameReview.weblink}}">External Link to Game</a>
+				<a id="game-link" th:href="@{${game.weblink}}">External Link to Game</a>
 				<span th:if="${gameExpansion}">Expansion Link: <a th:href="@{|/gameExpansion/${gameExpansion.id}|}" th:text="${gameExpansion.name}"></a></span>
 				
-				<p th:utext="${gameReview.review.text}"></p>
+				<span th:if="${game.review}"><p th:utext="${game.review.text}"></p></span>
 			</section>
 			
 			<section class="column-2">
-				<img th:src="@{'/images/' + ${gameReview.pictureLink}}" />
+				<img th:src="@{'/images/' + ${game.pictureLink}}" />
 			</section>				
 		</main>
 
 		<div id="tags">
-			<p class="buttons" th:each="tag : ${gameReview.tags}"> 
+			<p class="buttons" th:each="tag : ${game.tags}"> 
 				<a th:href="@{|/tags/${tag.id}|}"><button  th:text="${tag.name}"></button></a>
 			</p>
 			<p>Would you like to edit the tags for this review?</p>

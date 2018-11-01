@@ -38,13 +38,13 @@ public class GameCategoryControllerMockMvcTest {
 	private GameCategory secondCat;
 
 	@MockBean
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview gameReview;
+	private Game game;
 	
 	@Mock
-	private GameReview secondReview;
+	private Game secondGame;
 	
 	long arbitraryId = 1;
 	
@@ -52,7 +52,7 @@ public class GameCategoryControllerMockMvcTest {
 	public void shouldBeOkAndRouteToSingleGameCategorySite() throws Exception {
 		when(gameCategoryRepo.findById(arbitraryId)).thenReturn(Optional.of(gameCat));
 		mvc.perform(get("/gameCategory/1")).andExpect(status().isOk());
-//		mvc.perform(get("/gameCategory/1")).andExpect(view().name(is("singleGameCategoryTemplate")));
+		mvc.perform(get("/gameCategory/1")).andExpect(view().name(is("singleGameCategoryTemplate")));
 	}
 	
 	@Test

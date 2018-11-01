@@ -13,22 +13,22 @@ public class Tag extends Grouping {
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "tags")
-	private Collection<GameReview> gameReviews;
+	private Collection<Game> games;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "tags")
 	private Collection<GameExpansion> gameExpansions;
 	
-	public Collection<GameReview> getGameReviews() {
-		return gameReviews;
+	public Collection<Game> getGames() {
+		return games;
 	}
 	
-	public Collection<Long> getGameReviewIds() {
-		Collection<Long> gameReviewIds = new ArrayList<>();
-		for (GameReview gameReview : gameReviews) {
-			gameReviewIds.add(gameReview.getId());
+	public Collection<Long> getGameIds() {
+		Collection<Long> gameIds = new ArrayList<>();
+		for (Game game : games) {
+			gameIds.add(game.getId());
 		}
-		return gameReviewIds;
+		return gameIds;
 	}
 	
 	public Collection<GameExpansion> getGameExpansions() {

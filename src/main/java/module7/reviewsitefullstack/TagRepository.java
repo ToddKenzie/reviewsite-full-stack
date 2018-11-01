@@ -8,7 +8,7 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 	
 	Collection<Tag> findAllByOrderByNameAsc();
 
-	Collection<Tag> findByGameReviewsContains(GameReview gameReview);
+	Collection<Tag> findByGamesContains(Game game);
 
 	Collection<Tag> findByGameExpansionsContains(GameExpansion gameExpansion);
 

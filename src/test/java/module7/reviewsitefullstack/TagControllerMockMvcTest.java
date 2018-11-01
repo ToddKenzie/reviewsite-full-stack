@@ -40,13 +40,13 @@ public class TagControllerMockMvcTest {
 	private Tag secondTag;
 	
 	@MockBean
-	private GameReviewRepository gameReviewRepo;
+	private GameRepository gameRepo;
 	
 	@Mock
-	private GameReview gameReview;
+	private Game game;
 	
 	@Mock
-	private GameReview secondReview;
+	private Game secondGame;
 	
 	@MockBean
 	private GameExpansionRepository gameExpansionRepo;

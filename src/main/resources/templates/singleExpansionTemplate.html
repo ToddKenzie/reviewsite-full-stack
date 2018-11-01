@@ -10,7 +10,7 @@
 	<div class="main-container">
 		<header>
 			<h1><span th:text="${gameExpansion.name}">Expansion</span></h1>
-			<h2>An expansion for <span th:text="${gameReview.name}">Game</span></h2>
+			<h2>An expansion for <span th:text="${game.name}">Game</span></h2>
 			<hr>
 		</header>
 		
@@ -40,7 +40,7 @@
 		<nav>
 			<p>BoardGame HotSite</p>
 			<div id="nav-links">
-				<a th:href="@{|/gameReview/${gameReview.id}|}">Back to <span th:text="${gameReview.name}">The Game</span></a>
+				<a th:href="@{|/gameReview/${game.id}|}">Back to <span th:text="${game.name}">The Game</span></a>
 				<a th:href="@{/gameCategory/all}">All Categories</a>
 				<a th:href="@{/tags/all}">All Tags</a>
 				<a th:href="@{/gameReview/all}">Main Page</a>

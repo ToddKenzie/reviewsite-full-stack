@@ -16,7 +16,7 @@
 			<section class="column-1">
 				<h2>Games</h2>
 				<ul>
-					<li th:each="review : ${gameReviews}"><a th:href="@{|/gameReview/${review.id}|}" th:text="${review.name}"></a></li>
+					<li th:each="game : ${games}"><a th:href="@{|/gameReview/${game.id}|}" th:text="${game.name}"></a></li>
 				</ul>
 			</section>
 			<section class="column-2">
