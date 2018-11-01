@@ -31,11 +31,10 @@ public class GameReviewRepositoryTest {
 	
 	@Resource
 	private TagRepository tagRepo;
-
 	
-	GameReview review1;
-	GameReview review2;
-	GameReview review3;
+	GameReview gReview1;
+	GameReview gReview2;
+	GameReview gReview3;
 	
 	GameCategory board;
 	GameCategory card;
@@ -51,9 +50,9 @@ public class GameReviewRepositoryTest {
 		coop = tagRepo.save(new Tag("co-op"));
 		competitive = tagRepo.save(new Tag("competitive"));
 
-		review1 = gameReviewRepo.save(new GameReview("Root", "", "", "", "", "", "", board, coop, competitive));
-		review2 = gameReviewRepo.save(new GameReview("Concordia", "", "", "", "", "", "", board, competitive));
-		review3 = gameReviewRepo.save(new GameReview("The Mind", "", "", "", "", "", "", card, coop));
+		gReview1 = gameReviewRepo.save(new GameReview("Root", "", "", "", "", "", board, coop, competitive));
+		gReview2 = gameReviewRepo.save(new GameReview("Concordia", "", "", "", "", "", board, competitive));
+		gReview3 = gameReviewRepo.save(new GameReview("The Mind", "", "", "", "", "", card, coop));
 		
 		entity.flush();
 		entity.clear();
@@ -61,18 +60,18 @@ public class GameReviewRepositoryTest {
 	
 	@Test
 	public void shouldGenerateGameReviewId() {
-		Long testID = review1.getId();
+		Long testID = gReview1.getId();
 		
 		assertThat(testID, greaterThan(0L));
 	}
 	
 	@Test
 	public void shouldSaveAndLoadAReview() {
-		long testID = review1.getId();
+		long testID = gReview1.getId();
 		
 		Optional<GameReview> underTest = gameReviewRepo.findById(testID);
 		GameReview testReview = underTest.get();
-		assertThat(testReview, is(review1));
+		assertThat(testReview, is(gReview1));
 	}
 	
 	@Test
@@ -81,7 +80,7 @@ public class GameReviewRepositoryTest {
 			
 		Optional<GameCategory> testBoard = gameCategoryRepo.findById(boardID);
 		GameCategory underTest = testBoard.get();
-		assertThat(underTest.getGameReviews(), containsInAnyOrder(review1, review2));
+		assertThat(underTest.getGameReviews(), containsInAnyOrder(gReview1, gReview2));
 	}
 	
 	@Test
@@ -90,7 +89,7 @@ public class GameReviewRepositoryTest {
 		
 		Optional<Tag> testTag = tagRepo.findById(tagID);
 		Tag underTest = testTag.get();
-		assertThat(underTest.getGameReviews(), containsInAnyOrder(review1, review3));
+		assertThat(underTest.getGameReviews(), containsInAnyOrder(gReview1, gReview3));
 	}
 	
 	

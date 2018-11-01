@@ -25,7 +25,7 @@
 				<a id="game-link" th:href="@{${gameReview.weblink}}">External Link to Game</a>
 				<span th:if="${gameExpansion}">Expansion Link: <a th:href="@{|/gameExpansion/${gameExpansion.id}|}" th:text="${gameExpansion.name}"></a></span>
 				
-				<p th:utext="${gameReview.review}"></p>
+				<p th:utext="${gameReview.review.text}"></p>
 			</section>
 			
 			<section class="column-2">

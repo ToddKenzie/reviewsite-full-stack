@@ -25,14 +25,19 @@ public class ReviewRepositoryTest {
 	@Resource
 	private ReviewRepository reviewRepo;
 	
+	@Resource
+	private GameReviewRepository gameReviewRepo;
+	
 	Long reviewId;
 	Review review1;
 	String reviewText;
+	GameReview gameReview1;
 	
 	@Before
 	public void setUp() {
+		gameReview1 = gameReviewRepo.save(new GameReview("Root", "", "", "", "", "", null));
 		reviewText = "This is test text";
-		review1 = reviewRepo.save(new Review(reviewText));
+		review1 = reviewRepo.save(new Review(reviewText, gameReview1));
 		reviewId = review1.getId();
 		
 		entity.flush();
@@ -57,7 +62,12 @@ public class ReviewRepositoryTest {
 		Optional<Review> underTest = reviewRepo.findById(reviewId);
 		String testReviewText = underTest.get().getText();
 		assertThat(testReviewText, is(reviewText));
-		
 	}
 
+	@Test
+	public void reviewShouldBeAssociatedWithGameReview() {
+		Optional<Review> underTest = reviewRepo.findById(reviewId);
+		GameReview testGameReviewObject = underTest.get().getGameReview();
+		assertThat(testGameReviewObject, is(gameReview1));
+	}
 }

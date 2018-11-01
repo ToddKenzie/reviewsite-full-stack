@@ -3,6 +3,8 @@ package module7.reviewsitefullstack;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Review {
@@ -11,7 +13,11 @@ public class Review {
 	@GeneratedValue
 	private long id;
 	
+	@Lob
 	private String text;
+
+	@OneToOne
+	private GameReview gameReview;
 	
 	public long getId() {
 		return id;
@@ -21,10 +27,15 @@ public class Review {
 		return text;
 	}
 
+	public GameReview getGameReview() {
+		return gameReview;
+	}
+	
 	public Review() {}
 	
-	public Review(String text) {
+	public Review(String text, GameReview gameReview) {
 		this.text = text;
+		this.gameReview = gameReview;
 	}
 	
 	@Override
@@ -49,9 +60,5 @@ public class Review {
 		return true;
 	}
 
-	
-	
-	
-	
 
 }
