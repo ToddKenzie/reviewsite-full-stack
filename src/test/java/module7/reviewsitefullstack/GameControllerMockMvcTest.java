@@ -60,6 +60,15 @@ public class GameControllerMockMvcTest {
 	@MockBean
 	private ReviewRepository reviewRepo;
 	
+	@MockBean
+	private CommentRepository commentRepo;
+	
+	@Mock
+	private Comment comment;
+	
+	@Mock
+	private Comment comment2;
+	
 	long arbitraryId = 1;
 	
 	//single test issues due to creation of Review object
@@ -102,5 +111,23 @@ public class GameControllerMockMvcTest {
 		when(gameRepo.findAllByOrderByNameAsc()).thenReturn(allReviews);
 		mvc.perform(get("/gameReview/all")).andExpect(model().attribute("games", allReviews));
 	}
-			
+	
+	@Test
+	public void shouldBeOkAndRouteToReviewSite() throws Exception {
+		Collection<Comment> allComments = Arrays.asList(comment, comment2);
+		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review));
+		when(commentRepo.findByReviewOrderByTimeStampAsc(review)).thenReturn(allComments);
+		
+		mvc.perform(get("/gameReview/review/1")).andExpect(status().isOk());
+		mvc.perform(get("/gameReview/review/1")).andExpect(view().name(is("commentsTemplate")));
+	}
+	
+	@Test
+	public void shouldAddReviewAndCommentsIntoModel() throws Exception {
+		Collection<Comment> allComments = Arrays.asList(comment, comment2);
+		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review));
+		when(commentRepo.findByReviewOrderByTimeStampAsc(review)).thenReturn(allComments);
+	
+		mvc.perform(get("/gameReview/review/1")).andExpect(model().attribute("review", is(review)));
+	}
 }

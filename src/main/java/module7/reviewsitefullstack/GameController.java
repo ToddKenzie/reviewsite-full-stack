@@ -30,6 +30,9 @@ public class GameController {
 	
 	@Resource
 	private ReviewRepository reviewRepo;
+	
+	@Resource
+	private CommentRepository commentRepo;
 
 	@GetMapping("/{id:[\\d]+}")
 	public String findOneGameReview(@PathVariable Long id, Model model) throws NoGameFoundException {
@@ -50,6 +53,18 @@ public class GameController {
 		model.addAttribute("games", gameRepo.findAllByOrderByNameAsc());
 		model.addAttribute("gameCategories", gameCategoryRepo.findAll());
 		return "gameReviewsTemplate";
+	}
+
+	@GetMapping("/review/{id}")
+	public String findReviewAndCommentsForGame(@PathVariable Long id, Model model) throws NoReviewFoundException {
+		Optional<Review> review = reviewRepo.findById(id);
+		
+		if(review.isPresent()) {
+			model.addAttribute("review", review.get());
+			model.addAttribute("comments", commentRepo.findByReviewOrderByTimeStampAsc(review.get()));
+			return "commentsTemplate";
+		} 
+		throw new NoReviewFoundException();
 	}
 	
 }

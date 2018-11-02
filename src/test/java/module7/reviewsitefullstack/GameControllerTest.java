@@ -56,6 +56,21 @@ public class GameControllerTest {
 	private GameExpansion gameXp2;
 	
 	@Mock
+	private ReviewRepository reviewRepo;
+	
+	@Mock
+	private Review review;
+	
+	@Mock
+	private CommentRepository commentRepo;
+	
+	@Mock
+	private Comment comment;
+	
+	@Mock
+	private Comment comment2;
+	
+	@Mock
 	private Model model;
 	
 	long arbitraryId = 1;
@@ -99,6 +114,19 @@ public class GameControllerTest {
 		
 		underTest.findAllGameReviews(model);
 		verify(model).addAttribute("games", allReviews);
+	}
+	
+	@Test
+	public void addReviewAndAllCommentsToModel() throws Exception {
+		Collection<Comment> allComments = Arrays.asList(comment, comment2);
+		
+		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review));
+		when(commentRepo.findByReviewOrderByTimeStampAsc(review)).thenReturn(allComments);
+		
+		underTest.findReviewAndCommentsForGame(arbitraryId, model);
+		verify(model).addAttribute("review", review);
+		verify(model).addAttribute("comments", allComments);
+		
 	}
 		
 }
