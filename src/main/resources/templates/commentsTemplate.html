@@ -22,7 +22,7 @@
         <div class="comments" th:each="comment : ${comments}">
             <hr>
             <p th:text="${comment.text}"></p>
-            <p><span th:text="${comment.username}">Unknown User</span> at <span th:text="${comment.timeStamp}">time</span></p>
+            <p><span th:text="${comment.username}">Unknown User</span> at <span th:text="${comment.convertTimeStampToString()}">time</span></p>
         </div>
 
         <hr>
@@ -38,7 +38,7 @@
                 <label>Comments</label>
                 <textarea id="add-text" name="text" rows=5 cols=80></textarea>
                 <input type="text" th:value="${review.id}" name="reviewId" hidden>
-                <input id="submit-comment" type="submit" value="Submit" th:formaction="@{/gameReview/review/add}">
+                <input id="submit-comment" type="submit" value="Submit" th:formaction="@{/gameReview/review/add}" disabled>
             </form>
         </div>
 
@@ -52,5 +52,7 @@
 			</div>
 		</nav>
     </div>
+
+    <script type="text/javascript" th:src="@{/js/comment.js}"></script>
 </body>
 </html>

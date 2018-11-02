@@ -23,8 +23,12 @@ public class Comment extends Post {
 		return username;
 	}
 	
-	public String getTimeStamp() {
-		return StringFormatter.timeformat(timeStamp);
+	public Instant getTimeStamp() {
+		return timeStamp;
+	}
+	
+	public String convertTimeStampToString() {
+		return Formatter.convertInstantToString(timeStamp);
 	}
 	
 	public Comment() {}

@@ -88,7 +88,7 @@ public class CommentRepositoryTest {
 	@Test
 	public void shouldAutoSetTimeOnCreation() {
 		Optional<Comment> underTest = commentRepo.findById(commentId);
-		String commentTimeStamp = underTest.get().getTimeStamp();
+		String commentTimeStamp = underTest.get().convertTimeStampToString();
 		assertThat(commentTimeStamp, notNullValue());
 	}
 	

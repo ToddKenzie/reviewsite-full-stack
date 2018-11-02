@@ -57,7 +57,7 @@ public class TagController {
 		Tag newTag = tagRepo.findByNameIgnoreCase(tagName);
 		
 		if(newTag==null) {
-			String formattedTagName = StringFormatter.convertToPascalCaseWithSpace(tagName);
+			String formattedTagName = Formatter.convertStringToTitleCase(tagName);
 			newTag = new Tag(formattedTagName);
 			tagRepo.save(newTag);
 		}
