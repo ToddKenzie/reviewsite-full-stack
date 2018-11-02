@@ -30,16 +30,16 @@ public class GamePopulator implements CommandLineRunner {
 		GameCategory card = gameCategoryRepo.save(new GameCategory("Card"));
 		GameCategory dice = gameCategoryRepo.save(new GameCategory("Dice"));
 		
-		Tag singlePlayer = tagRepo.save(new Tag("Single player"));
-		Tag twoPlayer = tagRepo.save(new Tag("2 player"));
-		Tag moreThanFive = tagRepo.save(new Tag("More than 5 player"));
+		Tag singlePlayer = tagRepo.save(new Tag("Single Player"));
+		Tag twoPlayer = tagRepo.save(new Tag("2 Player"));
+		Tag moreThanFive = tagRepo.save(new Tag("More Than 5 Players"));
 		Tag coop = tagRepo.save(new Tag("Co-operative"));
 		Tag competitive = tagRepo.save(new Tag("Competitive"));
 		Tag deckbuild = tagRepo.save(new Tag("Deck-builder"));
 		Tag strategy = tagRepo.save(new Tag("Strategy"));
 		Tag luck = tagRepo.save(new Tag("Luck"));
-		Tag ww2 = tagRepo.save(new Tag("WW II"));
-		Tag ww1 = tagRepo.save(new Tag("WW I"));
+		Tag ww2 = tagRepo.save(new Tag("World War 2"));
+		Tag ww1 = tagRepo.save(new Tag("World War 1"));
 		Tag greece = tagRepo.save(new Tag("Ancient Greece"));
 		Tag abst = tagRepo.save(new Tag("Abstract"));
 		Tag asymmetric = tagRepo.save(new Tag("Asymmetric"));

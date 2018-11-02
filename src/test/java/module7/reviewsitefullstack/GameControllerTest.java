@@ -1,5 +1,6 @@
 package module7.reviewsitefullstack;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -126,7 +128,19 @@ public class GameControllerTest {
 		underTest.findReviewAndCommentsForGame(arbitraryId, model);
 		verify(model).addAttribute("review", review);
 		verify(model).addAttribute("comments", allComments);
-		
+	}
+	
+	@Test
+	public void shouldAddOneCommentToModel() throws Exception {
+		String commentUsername = "username";
+		String text = "text";
+		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review));
+
+		underTest.addComment(arbitraryId, text, commentUsername);
+
+		ArgumentCaptor<Comment> commentArgument = ArgumentCaptor.forClass(Comment.class);
+		verify(commentRepo).save(commentArgument.capture());
+		assertEquals("username", commentArgument.getValue().getUsername());
 	}
 		
 }

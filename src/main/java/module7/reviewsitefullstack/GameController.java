@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @CrossOrigin
@@ -65,6 +66,14 @@ public class GameController {
 			return "commentsTemplate";
 		} 
 		throw new NoReviewFoundException();
+	}
+
+	@PostMapping("/review/add")
+	public String addComment(Long reviewId, String text, String username) {
+		Optional<Review> review = reviewRepo.findById(reviewId);
+		commentRepo.save(new Comment(review.get(), text, username));
+		return "redirect:/gameReview/review/" + reviewId;
+		
 	}
 	
 }

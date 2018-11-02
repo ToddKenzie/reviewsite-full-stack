@@ -3,7 +3,9 @@ package module7.reviewsitefullstack;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -116,6 +118,7 @@ public class GameControllerMockMvcTest {
 	public void shouldBeOkAndRouteToReviewSite() throws Exception {
 		Collection<Comment> allComments = Arrays.asList(comment, comment2);
 		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review));
+		when(review.getGame()).thenReturn(game);
 		when(commentRepo.findByReviewOrderByTimeStampAsc(review)).thenReturn(allComments);
 		
 		mvc.perform(get("/gameReview/review/1")).andExpect(status().isOk());
@@ -126,8 +129,21 @@ public class GameControllerMockMvcTest {
 	public void shouldAddReviewAndCommentsIntoModel() throws Exception {
 		Collection<Comment> allComments = Arrays.asList(comment, comment2);
 		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review));
+		when(review.getGame()).thenReturn(game);
 		when(commentRepo.findByReviewOrderByTimeStampAsc(review)).thenReturn(allComments);
 	
 		mvc.perform(get("/gameReview/review/1")).andExpect(model().attribute("review", is(review)));
 	}
+
+//	Need to research how to properly test a redirect off of this
+//	@Test
+//	public void onAddShouldRouteToEditSite() throws Exception {
+//		when(review.getId()).thenReturn(1L);
+//		
+//		mvc.perform(post("/gameReview/review/add")
+//				.param("review", "review")
+//				.param("text", "Text")
+//				.param("username", "JoeBob"))
+//			.andExpect(redirectedUrl("/gameReview/review/1"));
+//	}
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+	<title>Single Review</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/review.css}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>Review and Comments for <span th:text="${review.game.name}">unknown</span></h1>
+            <hr>
+        </header>
+
+        <h2>Review</h2>
+        <p th:utext="${review.text}"></p>
+
+        <hr>
+        <h2>Comments</h2>
+        <div class="comments" th:each="comment : ${comments}">
+            <hr>
+            <p th:text="${comment.text}"></p>
+            <p><span th:text="${comment.username}">Unknown User</span> at <span th:text="${comment.timeStamp}">time</span></p>
+        </div>
+
+        <hr>
+
+        <div class="new-comments">
+            <form class="add-comment" method="POST" autocomplete="off">
+                <h3>Add A Comment</h3>
+                <div class="username">
+                    <label>UserName</label>
+                    <input id="add-username" type="text" name="username">
+                </div>
+                <br/>
+                <label>Comments</label>
+                <textarea id="add-text" name="text" rows=5 cols=80></textarea>
+                <input type="text" th:value="${review.id}" name="reviewId" hidden>
+                <input id="submit-comment" type="submit" value="Submit" th:formaction="@{/gameReview/review/add}">
+            </form>
+        </div>
+
+        <nav>
+			<p>BoardGame HotSite</p>
+			<div id="nav-links">
+                <a th:href="@{|/gameReview/${review.game.id}|}">Back to <span th:text="${review.game.name}">The Game</span></a>
+				<a th:href="@{/gameCategory/all}">All Categories</a>
+				<a th:href="@{/tags/all}">All Tags</a>
+				<a th:href="@{/gameReview/all}">Main Page</a>
+			</div>
+		</nav>
+    </div>
+</body>
+</html>
