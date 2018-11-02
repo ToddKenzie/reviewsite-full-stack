@@ -21,7 +21,7 @@ public class TagRestController {
 	
 	@RequestMapping("/")
 	public Iterable<Tag> findAllTags() {
-		return tagRepo.findAll();
+		return tagRepo.findAllByOrderByNameAsc();
 	}
 	
 	@RequestMapping("/gameReview/{id}")

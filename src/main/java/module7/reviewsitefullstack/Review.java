@@ -30,6 +30,10 @@ public class Review extends Post{
 		this.game = game;
 	}
 	
+	public int countOfComments() {
+		return comments.size();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

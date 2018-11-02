@@ -22,6 +22,9 @@ public class GamePopulator implements CommandLineRunner {
 	
 	@Resource 
 	private ReviewRepository reviewRepo;
+	
+	@Resource
+	private CommentRepository commentRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -54,6 +57,10 @@ public class GamePopulator implements CommandLineRunner {
 				board, competitive, animals, twoPlayer, strategy, asymmetric));
 		Review reviewRoot = reviewRepo.save(new Review("Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutter. <br /><br /> Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.",
 				root));
+		Comment comment1 = commentRepo.save(new Comment(reviewRoot, "This is a weird game, with its cuteness vs its structure", "Joe Schmoe", "2018-09-10T22:21:35.019Z"));
+		
+//		public Comment(Review review, String text, String username, String timeStamp) {
+//		2017-10-05T02:34:56.050Z
 		
 		Game mind = gameReviewRepo.save(new Game("The Mind", "2-4", "20 min",
 				"Simple rules: Play the cards in sequence.  The catch: you can't discuss what's in your hand at all.",
@@ -63,6 +70,8 @@ public class GamePopulator implements CommandLineRunner {
 				+ "<br /><br />"
 				+ "Quarter bilge water rutters lanyard heave to sheet hang the jib avast salmagundi skysail. Gold Road lugger barque loot aye wench hearties Buccaneer no prey, no pay port. Jack aft scuttle heave to case shot quarter hempen halter sloop Sea Legs heave down.",
 				mind));
+		Comment comment2 = commentRepo.save(new Comment(reviewMind, "Quick and fun", "Jake from State Farm", "2018-07-22T15:21:23.324Z"));
+		Comment comment3 = commentRepo.save(new Comment(reviewMind, "It's weird how people actually start to sync up when you play this game for a bit", "RaphaelGry", "2018-08-21T12:04:15.522Z"));
 		
 		Game blackOrchestra = gameReviewRepo.save(new Game("Black Orchestra", "1-5", "90 min",
 				"You and your friends play as people inside Germany during the rise of Hitler attempting to kill him and stop his reign of terror.",
@@ -72,6 +81,7 @@ public class GamePopulator implements CommandLineRunner {
 				+ "<br /><br />"
 				+ "Lass loaded to the gunwalls grog lateen sail pillage gangplank driver splice the main brace hulk knave. Flogging grog blossom scuttle main sheet salmagundi rum stern provost hearties wench. Lugger blow the man down overhaul swing the lead man-of-war snow furl run a shot across the bow line scourge of the seven seas.",
 				blackOrchestra));
+		Comment comment4 = commentRepo.save(new Comment(reviewBlackOrch, "I'd rather play Secret Hitler if I want to kill Hitler.", "SecretFan01", "2018-06-04T09:04:03.243Z"));
 		
 		Game concordia = gameReviewRepo.save(new Game("Concordia", "2-5", "90 min",
 				"Part board game, part deck-builder: develop your trade network across Ancient Europe to dominate your rivals.",
@@ -81,6 +91,7 @@ public class GamePopulator implements CommandLineRunner {
 				+ "<br /><br />"
 				+ "Sheet bilged on her anchor jib wench stern jack swab fire in the hole clap of thunder gangplank. Poop deck gangplank ballast wherry lad starboard fire ship code of conduct reef crack Jennys tea cup. Draft jury mast strike colors gibbet measured fer yer chains lookout avast spyglass scurvy code of conduct.",
 				concordia));
+		Comment comment5 = commentRepo.save(new Comment(reviewConcordia, "Probably my current favorite game.  Just sad that I didn't know about this for 3 years", "TheMopeyBear", "2017-10-11T18:54:36.021Z"));
 		
 		Game grizzled = gameReviewRepo.save(new Game("The Grizzled", "3-5", "30 min",
 				"Playing as a group of WWI soldiers from France, your objective is not to win the war, just survive it.",
@@ -90,6 +101,8 @@ public class GamePopulator implements CommandLineRunner {
 				+ "<br /><br />"
 				+ "Gun jolly boat ye scallywag maroon fire in the hole belaying pin Blimey parley bucko. Nipperkin hang the jib reef sails swab jury mast gabion Sea Legs Corsair quarter coxswain. Nelsons folly belaying pin fathom skysail stern Davy Jones' Locker lateen sail Sea Legs wench hardtack.",
 				grizzled));
+		Comment comment6 = commentRepo.save(new Comment(reviewGrizzled, "Very difficult at times to understand.  The expansion helps", "Wolfman", "2018-03-28T19:53:36.052Z"));
+
 		
 		Game wayOfPanda = gameReviewRepo.save(new Game("Way of the Panda", "2-4", "60 - 90 min",
 				"Your clan and other panda clans are attempting to retake and rebuild your land from the human ninjas.",

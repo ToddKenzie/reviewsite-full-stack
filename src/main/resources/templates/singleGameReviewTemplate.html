@@ -26,6 +26,8 @@
 				<span th:if="${gameExpansion}">Expansion Link: <a th:href="@{|/gameExpansion/${gameExpansion.id}|}" th:text="${gameExpansion.name}"></a></span>
 				
 				<span th:if="${game.review}"><p th:utext="${game.review.text}"></p>
+				<p th:if="${game.review.countOfComments() == 1}">There is currently one comment.</p>
+				<p th:unless="${game.review.countOfComments() == 1}">There are currently <span th:text="${game.review.countOfComments()}"></span> comments.</p>
 				<p>Would you like to see / add comments?</p>
 				<a th:href="@{|/gameReview/review/${game.review.id}|}"><button>Check Comments</button></a>
 				
@@ -38,11 +40,12 @@
 		</main>
 
 		<div id="tags">
+			<h3>Tags</h3>
 			<p class="buttons" th:each="tag : ${game.tags}"> 
 				<a th:href="@{|/tags/${tag.id}|}"><button  th:text="${tag.name}"></button></a>
 			</p>
 			<p>Would you like to edit the tags for this review?</p>
-			<a th:href="@{|/|}"><button>Edit Tags</button></a>
+			<a th:href="@{|/tagEdit.html|}"><button>Edit Tags</button></a>
 		</div>
 		
 		<nav>
