@@ -3,6 +3,8 @@ package module7.reviewsitefullstack;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.time.Instant;
+
 import org.junit.Test;
 
 public class StringFormatterTest {
@@ -33,6 +35,14 @@ public class StringFormatterTest {
 		String underTest = "biLLy bo BOB";
 		String result = StringFormatter.convertToPascalCaseWithSpace(underTest);
 		assertThat(result, is("Billy Bo Bob"));
+	}
+	
+	@Test
+	public void convertCharSequenceToTime() {
+		String underTest = "2017-10-05T02:34:56.050Z";
+		Instant timeStamp = Instant.parse(underTest);
+		String formattedTime = StringFormatter.timeformat(timeStamp);
+		assertThat(formattedTime, is("10/4/17 10:34 PM"));
 	}
 
 }

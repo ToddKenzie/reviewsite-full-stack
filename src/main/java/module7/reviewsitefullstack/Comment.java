@@ -1,21 +1,47 @@
 package module7.reviewsitefullstack;
 
+import java.time.Instant;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Comment extends Post{
+public class Comment extends Post {
 
 	private String username;
+	private Instant timeStamp;
+	
+	@ManyToOne
+	private Review review;
+	
+
+	public Review getReview() {
+		return review;
+	}
 	
 	public String getUsername() {
 		return username;
 	}
 	
+	public String getTimeStamp() {
+		return StringFormatter.timeformat(timeStamp);
+	}
+	
 	public Comment() {}
 
-	public Comment(String text, String username) {
+	public Comment(Review review, String text, String username) {
 		super(text);
+		this.review = review;
 		this.username = username;
+		this.timeStamp = Instant.now();
+	}
+	
+	//use this only for Populator generation to set up the initial load
+	public Comment(Review review, String text, String username, String timeStamp) {
+		super(text);
+		this.review = review;
+		this.username = username;
+		this.timeStamp = Instant.parse(timeStamp);
 	}
 
 	@Override

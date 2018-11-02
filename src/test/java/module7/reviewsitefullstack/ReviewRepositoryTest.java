@@ -65,9 +65,9 @@ public class ReviewRepositoryTest {
 	}
 
 	@Test
-	public void reviewShouldBeAssociatedWithGameReview() {
+	public void reviewShouldBeAssociatedWithGame() {
 		Optional<Review> underTest = reviewRepo.findById(reviewId);
-		Game testGameReviewObject = underTest.get().getGame();
-		assertThat(testGameReviewObject, is(game1));
+		Game testGameObject = underTest.get().getGame();
+		assertThat(testGameObject, is(game1));
 	}
 }

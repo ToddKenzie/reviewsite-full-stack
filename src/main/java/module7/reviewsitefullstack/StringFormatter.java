@@ -1,6 +1,17 @@
 package module7.reviewsitefullstack;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+
 public class StringFormatter {
+	
+	private static DateTimeFormatter formatter =
+		    DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
+		                     .withLocale( Locale.US )
+		                     .withZone( ZoneId.systemDefault() );
 	
 	public static String convertToPascalCaseWithSpace(String input) {
 		String result = "";
@@ -13,6 +24,10 @@ public class StringFormatter {
 			}
 		}
 		return result;
+	}
+
+	public static String timeformat(Instant timeStamp) {
+		return formatter.format(timeStamp);
 	}
 
 }

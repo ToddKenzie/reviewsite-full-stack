@@ -1,9 +1,9 @@
 package module7.reviewsitefullstack;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -12,8 +12,15 @@ public class Review extends Post{
 	@OneToOne
 	private Game game;
 	
+	@OneToMany(mappedBy = "review")
+	private Collection<Comment> comments;
+	
 	public Game getGame() {
 		return game;
+	}
+	
+	public Collection<Comment> getComments() {
+		return comments;
 	}
 	
 	public Review() {}
